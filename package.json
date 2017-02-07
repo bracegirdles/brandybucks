@@ -12,8 +12,7 @@
     "serverDevTestAuth": "nodemon server/devIndex.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "test": "mocha --bail --reporter nyan test/ServerSpec.js",
-    "postinstall": "webpack -p"
+    "test": "mocha --bail --reporter nyan test/ServerSpec.js"
   },
   "repository": {
     "type": "git",
