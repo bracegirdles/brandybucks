@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import {getAllStudents} from './helper/auth.js'
+import {getAllStudents} from '../helper/auth.js'
 import {StudentEntry} from './StudentEntry.jsx';
 import {Link} from 'react-router';
 
-class StudentList extends React.Component {
+export default class StudentList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -71,5 +71,3 @@ class StudentList extends React.Component {
     );
   }
 }
-
-export {StudentList};
