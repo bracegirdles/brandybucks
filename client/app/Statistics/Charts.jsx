@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {getAllLogs} from './helper/auth.js'
+import {getAllLogs} from '../helper/auth.js'
 import {VictoryBar, VictoryPie, VictoryChart, VictoryTheme} from 'victory';
 
 module.exports = React.createClass({
@@ -34,7 +34,7 @@ module.exports = React.createClass({
             x: "",
             contributions: 0
         }]
-    }  
+    }
   },
 
   componentWillMount() {
@@ -70,7 +70,7 @@ module.exports = React.createClass({
               x: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1}).length > 0 ? "Complete" : '',
               contributions: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1}).length
           }]
-        }); 
+        });
       } else {
         this.setState({
           logs: resp.data.filter((log) => {return log.student_id === this.props.student_id}),
@@ -101,7 +101,7 @@ module.exports = React.createClass({
               x: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1 && log.student_id === this.props.student_id}).length > 0 ? "Complete" : '',
               contributions: resp.data.filter((log) => {return log.other === "Complete" && log.types === 1 && log.student_id === this.props.student_id}).length
           }]
-        }); 
+        });
       }
     })
     .catch((err) => {
@@ -125,7 +125,7 @@ module.exports = React.createClass({
             colorScale={"qualitative"}
             data={this.state.data}
             x="x"
-            y={(datum) => datum.contributions} 
+            y={(datum) => datum.contributions}
           />
       </VictoryChart>
       <h3 className="goalTitle">{this.state.studentName} &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; Goals</h3>
@@ -133,11 +133,11 @@ module.exports = React.createClass({
           <VictoryPie
             name="area-1"
             colorScale={"qualitative"}
-            width={450} 
+            width={450}
             height={300}
             data={this.state.data2}
             x="x"
-            y={(datum) => datum.contributions} 
+            y={(datum) => datum.contributions}
           />
       </div>
       </div>
@@ -159,7 +159,7 @@ module.exports = React.createClass({
             colorScale={"qualitative"}
             data={this.state.data}
             x="x"
-            y={(datum) => datum.contributions} 
+            y={(datum) => datum.contributions}
           />
       </VictoryChart>
       <h3 className="goalTitle">{this.state.studentName} Goals</h3>
@@ -167,11 +167,11 @@ module.exports = React.createClass({
           <VictoryPie
             name="area-1"
             colorScale={"qualitative"}
-            width={450} 
+            width={450}
             height={300}
             data={this.state.data2}
             x="x"
-            y={(datum) => datum.contributions} 
+            y={(datum) => datum.contributions}
           />
       </div>
       </div>
