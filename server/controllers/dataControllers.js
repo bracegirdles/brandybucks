@@ -1,4 +1,4 @@
-var User = require('../models/user');
+var Teacher = require('../models/teacher');
 var knex = require('../config.js').knex;
 
 var Student = require('../models/student');
@@ -63,6 +63,16 @@ module.exports = {
       knex('students')
       .select('*')
       .then(function(data){
+        res.send(data);
+      })
+    },
+
+    getSearch: function(req, res) {
+      var searchString = '%' + req.query.name + '%';
+      knex('students')
+      .select('*')
+      .where('name', 'like', searchString)
+      .then(function(data) {
         res.send(data);
       })
     }

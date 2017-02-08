@@ -7,6 +7,8 @@ router.get('/students/name', controller.query.get);
 
 router.get('/students/getAll', controller.studentInfo.get);
 
+router.get('/students/getSearch', controller.studentInfo.getSearch);
+
 router.post('/students', controller.studentInfo.post);
 
 router.post('/logs', controller.logs.post);
