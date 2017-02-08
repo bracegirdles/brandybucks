@@ -49,7 +49,9 @@
     "webpack": "^1.14.0"
   },
   "devDependencies": {
+    "css-loader": "^0.26.1",
     "live-server": "^1.2.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "style-loader": "^0.13.1"
   }
 }
