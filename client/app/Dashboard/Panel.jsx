@@ -1,11 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router';
+import css from '../../css/panel.css';
 
-export default Panel = props => (
-  <div className="col-mid-6">
-    <Link to={`/${props.title.toLowerCase()}`}>
-      <i className={`fa fa-${props.icon} fa-5x`}></i>
-      <h3>{props.title}</h3>
-    </Link>
+const Panel = props => (
+  <div className="row">
+    <div className="panel-icon top-15">
+      <Link to={`/${props.title.toLowerCase()}`}>
+        <i onMouseOver={() => { props.hover(props.title.toLowerCase()); }} className={`fa fa-${props.icon} fa-5x`}></i>
+        <h1>{props.title}</h1>
+      </Link>
+    </div>
   </div>
 );
+
+export default Panel;

@@ -35,7 +35,7 @@ class App extends React.Component {
       clickedStudent: this.clickedStudent
     });
     return (
-      <div className="container">
+      <div>
         <Nav handleSearchInputChange={this.getStudentId.bind(this)} studentObj={this.state.studentObj} />
         {childrenWithProps}
       </div>
