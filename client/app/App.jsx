@@ -4,6 +4,7 @@ import Nav from './Nav.jsx';
 import {getSearchStudents} from './helper/auth.js';
 import {getAllStudents} from './helper/auth.js';
 import {compareLastName} from './helper/helpers.js';
+import {getUserStatus} from './helper/auth.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,10 +14,19 @@ class App extends React.Component {
       student_id: '',
       studentObj: '',
       student_array: [],
-      searchInput: ''
+      searchInput: '',
+      status: ''
     };
 
     this.clickedStudent = this.clickedStudent.bind(this);
+  }
+
+  componentDidMount() {
+    getUserStatus().then(session => {
+      this.setState({
+        status: session.data.status
+      });
+    })
   }
 
   //method to handle click on student
@@ -71,17 +81,19 @@ class App extends React.Component {
   }
 
   render () {
+    console.log('status', this.state.status)
     var childrenWithProps = React.cloneElement(this.props.children, {
       student_id: this.state.student_id,
       studentObj: this.state.studentObj,
       clickedStudent: this.clickedStudent,
       student_array: this.state.student_array,
       handleGetSearch: this.handleGetSearch.bind(this),
-      searchClicked: this.searchClicked.bind(this)
+      searchClicked: this.searchClicked.bind(this),
+      status: this.state.status
     });
     // console.log('$$$$$$$$$$$$$$$$**', this.state.student_id);
     return (
-      <div className="container">
+      <div>
         <Nav handleSearchInputChange={this.getStudentId.bind(this)} studentObj={this.state.studentObj}
           handleGetSearch={this.handleGetSearch.bind(this)} />
         {childrenWithProps}
