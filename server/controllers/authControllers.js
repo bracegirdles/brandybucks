@@ -24,7 +24,7 @@ module.exports = {
 
                   // set the permissions level
                   req.session.level = 'loggedIn'
-
+                  req.session.status = status;
                   res.redirect('/')
 
                 } else {
@@ -49,7 +49,8 @@ module.exports = {
 
                   // set the permissions level
                   req.session.level = 'loggedIn'
-
+                  req.session.status = status;
+                  // localStorage.setItem('status', user.)
                   res.redirect('/')
 
                 } else {
@@ -93,7 +94,7 @@ module.exports = {
 
                   // set the permissions level (for now)
                   req.session.level = 'loggedIn'
-
+                  req.session.status = status;
                   res.redirect('/');
                 });
             } else {
@@ -124,6 +125,7 @@ module.exports = {
 
                   // set the permissions level (for now)
                   req.session.level = 'loggedIn'
+                  req.session.status = status;
                   res.redirect('/');
                 });
             } else {
@@ -145,4 +147,3 @@ module.exports = {
     }
   }
 }
-
