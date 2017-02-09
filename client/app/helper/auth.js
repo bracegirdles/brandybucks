@@ -4,6 +4,10 @@ exports.getAllStudents = () => {
   return axios.get('api/students/getAll')
 };
 
+exports.getUserStatus = () => {
+  return axios.get('api/user/status');
+}
+
 exports.getStudentByName = (name) => {
   return axios.get('api/students/name', {
     params: {

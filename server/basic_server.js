@@ -11,7 +11,6 @@ var bodyParser = require('body-parser');
 var authRouter = require('./authRoutes.js');
 var dataRouter = require('./dataRoutes.js');
 
-
 var authRedirectMiddleware = function(req, res, next){
   if(req.session.level === undefined) {
     res.redirect('/login');
@@ -99,7 +98,9 @@ app.use(express.static(__dirname + '/../client'));
 // Set up our data api routes
 app.use('/api', dataRouter);
 
-
+app.get('/api/user/status', function(req, res) {
+  res.json(req.session)
+})
 
 // catch any other urls and send to index.html in /../client
 app.get('*', function(req, res) {
