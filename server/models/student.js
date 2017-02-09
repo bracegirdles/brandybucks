@@ -1,7 +1,8 @@
 var db = require('../config');
 var Student = db.Model.extend({
 
-  tableName: 'students'
+  tableName: 'students',
+  hasTimestamps: true,
 
 });
 
