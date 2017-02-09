@@ -12,6 +12,14 @@ exports.getStudentByName = (name) => {
   })
 };
 
+exports.getSearchStudents = (string) => {
+  return axios.get('api/students/getSearch', {
+    params: {
+      name: string
+    }
+  })
+};
+
 exports.addStudent = (student) => {
   return axios({
     method: 'POST',

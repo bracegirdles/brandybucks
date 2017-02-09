@@ -86,6 +86,7 @@ bookshelf.knex.schema.hasTable('parents').then(function(exists) {
       parent.string('username', 100);
       parent.string('password', 200);
       parent.string('email', 200);
+      parent.string('optIn', 100);
       parent.foreign('student_id').references('students.id');
       parent.timestamps();
 

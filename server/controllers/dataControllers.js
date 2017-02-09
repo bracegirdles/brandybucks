@@ -24,7 +24,17 @@ module.exports = {
       .catch(function(err) {
         res.send('Could not find such student, please check student name.');
       })
-    }
+    },
+
+    getSearch: function(req, res) {
+      var searchString = '%' + req.query.name + '%';
+      knex('students')
+      .select('*')
+      .where('first_name', 'like', searchString).orWhere('last_name', 'like', searchString)
+      .then(function(data) {
+        res.send(data);
+      })
+    },
   },
 
   studentInfo: {
@@ -60,23 +70,19 @@ module.exports = {
     },
 
     get: function(req, res) {
+      // debugger;
       knex('students')
       .select('*')
       .then(function(data){
+        // console.log('gettign data', data);
         res.send(data);
       })
     },
 
-    getSearch: function(req, res) {
-      var searchString = '%' + req.query.name + '%';
-      knex('students')
-      .select('*')
-      .where('name', 'like', searchString)
-      .then(function(data) {
-        res.send(data);
-      })
-    }
+
   },
+
+
 
   logs: {
 

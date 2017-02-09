@@ -31,6 +31,7 @@ class Nav extends React.Component {
 
   //create handler method to extract search input box value.
   handleChangeSearch (e) {
+    this.props.handleGetSearch(e.target.value);
     this.setState({
       searchInput: e.target.value,
     });

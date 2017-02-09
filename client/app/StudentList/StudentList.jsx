@@ -9,7 +9,7 @@ export default class StudentList extends React.Component {
     super(props);
 
     this.state = {
-      students: [],
+      students: this.props.student_array,
       //clickedStudent: {}
     };
 
@@ -18,22 +18,20 @@ export default class StudentList extends React.Component {
 
   //method to retrieve student from database once page load.
   componentWillMount() {
-  function compareLastName(a,b) {
-    if (a.last_name < b.last_name)
-      return -1;
-    if (a.last_name > b.last_name)
-      return 1;
-    return 0;
+    function compareLastName(a,b) {
+      if (a.last_name < b.last_name)
+        return -1;
+      if (a.last_name > b.last_name)
+        return 1;
+      return 0;
+    }
   }
-    getAllStudents()
-    .then((resp) => {
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
       this.setState({
-        students: resp.data.sort(compareLastName),
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+        students: nextProps.student_array});
+    }
   }
 
   render () {
@@ -55,7 +53,9 @@ export default class StudentList extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.students.map((student, index) => {
+                      {
+                        this.props.student_array.map((student, index) => {
+
                           return (
                             <StudentEntry clickedStudent={this.props.clickedStudent} eachStudent={student} key={index} />
                           )
