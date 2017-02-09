@@ -36,6 +36,26 @@ var bookshelf = require('bookshelf')(knex);
 
 //checks for a table's existence by tableName, resolving with a boolean to signal if the table exists
 // knex.schema.dropTableIfExists('students');
+knex.schema.dropTable('users');
+
+bookshelf.knex.schema.hasTable('teachers').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('teachers', function(teacher) {
+      teacher.increments('id').primary();
+      teacher.string('first_name', 100);
+      teacher.string('last_name', 100);
+      // does password go here? and do we want a username field?
+      teacher.string('username', 100);
+      teacher.string('password', 200);
+      teacher.string('email', 200);
+      teacher.timestamps();
+
+    }).then(function (table) {
+    console.log('Created Table TEACHERS', table);
+    });
+  }
+});
+
 bookshelf.knex.schema.hasTable('students').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('students', function(student) {
@@ -53,26 +73,6 @@ bookshelf.knex.schema.hasTable('students').then(function(exists) {
   }
 });
 
-// knex.schema.dropTableIfExists('users');
-bookshelf.knex.schema.hasTable('teachers').then(function(exists) {
-  if (!exists) {
-    return knex.schema.createTable('teachers', function(teacher) {
-      teacher.increments('id').primary();
-      teacher.string('first_name', 100);
-      teacher.string('last_name', 100);
-      teacher.string('type', 100);
-
-      // does password go here? and do we want a username field?
-      teacher.string('username', 100);
-      teacher.string('password', 200);
-      teacher.string('email', 200);
-      teacher.timestamps();
-
-    }).then(function (table) {
-    console.log('Created Table TEACHERS', table);
-    });
-  }
-});
 
 bookshelf.knex.schema.hasTable('parents').then(function(exists) {
   if (!exists) {
@@ -80,8 +80,6 @@ bookshelf.knex.schema.hasTable('parents').then(function(exists) {
       parent.increments('id').primary();
       parent.string('first_name', 100);
       parent.string('last_name', 100);
-      parent.string('type', 100);
-
       // does password go here? and do we want a username field?
       parent.string('username', 100);
       parent.string('password', 200);
@@ -116,7 +114,7 @@ bookshelf.knex.schema.hasTable('logs').then(function(exists) {
       table.increments('id').primary();
       table.text('log');
       table.integer('teacher_id').unsigned();
-      table.foreign('teacher_id').references('teacher_id');
+      table.foreign('teacher_id').references('teacher.id');
       table.string('teacher',100);
       table.integer('student_id').unsigned();
       table.foreign('student_id').references('student.id');
@@ -128,6 +126,20 @@ bookshelf.knex.schema.hasTable('logs').then(function(exists) {
   }
 });
 
+bookshelf.knex.schema.hasTable('messages').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('messages', function(table) {
+      table.increments('id').primary();
+      table.text('messages');
+      table.integer('teacher_id').unsigned();
+      table.foreign('teacher_id').references('teacher.id');
+      table.integer('student_id').unsigned();
+      table.foreign('student_id').references('student.id');
+    }).then(function (table) {
+    console.log('Created Table MESSAGES', table);
+    });
+  }
+});
 
 
 

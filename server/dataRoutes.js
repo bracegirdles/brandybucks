@@ -15,6 +15,9 @@ router.post('/logs', controller.logs.post);
 
 router.get('/logs/getAll', controller.logs.get);
 
+router.post('/message/postEmail', controller.message.postEmail);
+
+router.get('/message/getParentEmail', controller.message.getParentEmail);
 
 module.exports = router;
 

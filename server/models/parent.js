@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 
 var Parent = db.Model.extend({
 
-  tableName: 'users',
+  tableName: 'parents',
   hasTimestamps: true,
 
   initialize: function() {

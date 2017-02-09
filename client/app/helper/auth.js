@@ -43,3 +43,11 @@ exports.addLog = (log) => {
 exports.logout = () => {
   return axios.get('authApi/logout')
 };
+
+exports.getParentEmail = () => {
+  return axios.get('api/message/getParentEmail')
+};
+
+exports.addMessage = () => {
+  return axios.post('api/message/postEmail')
+};

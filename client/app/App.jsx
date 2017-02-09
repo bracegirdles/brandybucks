@@ -53,7 +53,7 @@ class App extends React.Component {
   handleGetSearch(e) {
     getSearchStudents(e).then((resp) => {
       this.setState({
-        student_array: resp.data,
+        student_array: resp.data.sort(compareLastName),
       });
     }).catch((err) => {
       console.log(err);

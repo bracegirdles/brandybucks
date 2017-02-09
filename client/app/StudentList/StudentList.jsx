@@ -17,15 +17,6 @@ export default class StudentList extends React.Component {
   }
 
   //method to retrieve student from database once page load.
-  componentWillMount() {
-    function compareLastName(a,b) {
-      if (a.last_name < b.last_name)
-        return -1;
-      if (a.last_name > b.last_name)
-        return 1;
-      return 0;
-    }
-  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props !== nextProps) {

@@ -1,8 +1,6 @@
 var Teacher = require('../models/teacher');
 var Parent = require('../models/parent');
 var knex = require('../config.js').knex;
-var Student = require('../models/student');
-
 
 module.exports = {
   // need separate logins for teachers and parents?
@@ -11,29 +9,56 @@ module.exports = {
     post: function(req, res) {
       var username = req.body.username;
       var password = req.body.password;
+      var status = req.body.status;
 
-      new Teacher({ username: username })
-        .fetch()
-        .then(function(user) {
-          if (!user) {
-            // res.send('no user by that name')
-            res.redirect('/')
-          } else {
+      if (status === 'teacher') {
+        new Teacher({username: username})
+          .fetch()
+          .then(function(user) {
+            if (!user) {
+              // res.send('no user by that name')
+              res.redirect('/')
+            } else {
+              user.comparePassword(password, function(match) {
+                if (match) {
 
-            user.comparePassword(password, function(match) {
-              if (match) {
+                  // set the permissions level
+                  req.session.level = 'loggedIn'
 
-                // set the permissions level
-                req.session.level = 'loggedIn'
+                  res.redirect('/')
 
-                res.redirect('/')
+                } else {
+                  res.redirect('/')
+                }
+              });
+            }
+          });
+      }
 
-              } else {
-                res.redirect('/')
-              }
-            });
-          }
-        });
+      if (status === 'parent') {
+        new Parent({ username: username })
+          .fetch()
+          .then(function(user) {
+            if (!user) {
+              // res.send('no user by that name')
+              res.redirect('/')
+            } else {
+
+              user.comparePassword(password, function(match) {
+                if (match) {
+
+                  // set the permissions level
+                  req.session.level = 'loggedIn'
+
+                  res.redirect('/')
+
+                } else {
+                  res.redirect('/')
+                }
+              });
+            }
+          });
+      }
     }
   },
 
@@ -42,19 +67,22 @@ module.exports = {
     post: function(req, res) {
       var username = req.body.username;
       var password = req.body.password;
-      var email = req.body.email;
       // teacher or parent?
       var status = req.body.status;
-      if (status === 'Teacher') {
+      // console.log('trying to sign up with status ', status)
+
+      if (status === 'teacher') {
         new Teacher ({ username: username })
           .fetch()
           .then(function(user) {
             if (!user) {
 
               var newUser = new Teacher({
-                username: username,
-                password: password,
-                email: email
+                username: req.body.username,
+                email: req.body.email,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                password: req.body.password
               });
 
               newUser.save()
@@ -73,15 +101,19 @@ module.exports = {
               res.redirect('/signup');
             }
           });
-      } else if (status === 'Parent') {
+      } else if (status === 'parent') {
+        // console.log('trying to create parent row');
         new Parent({ username: username })
           .fetch()
           .then(function(user) {
             if (!user) {
 
               var newUser = new Parent({
-                username: username,
-                password: password
+                username: req.body.username,
+                email: req.body.email,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                password: password,
               });
 
               newUser.save()

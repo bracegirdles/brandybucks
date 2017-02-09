@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 
 var Teacher = db.Model.extend({
 
-  tableName: 'users',
+  tableName: 'teachers',
   hasTimestamps: true,
 
   initialize: function() {
@@ -12,7 +12,7 @@ var Teacher = db.Model.extend({
   },
   comparePassword: function(attemptedPassword, callback) {
     bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
-      callback(isMatch);
+        callback(isMatch);
     });
   },
   hashPassword: function() {

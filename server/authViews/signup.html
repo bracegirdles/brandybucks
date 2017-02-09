@@ -24,7 +24,7 @@
         margin: 0 auto;
       }
 
-      input {
+      input, select {
         width: 100%;
         color: #999;
         border-radius: 4px !important;
@@ -79,8 +79,16 @@
     </div>
 
     <form action='/authApi/signup' method='POST'>
-      <input type='text' name='username' placeholder='username' />
-      <input type='text' name='password' placeholder='password' />
+      <input type='text' name='first_name' placeholder='First Name' />
+      <input type='text' name='last_name' placeholder='Last Name' />
+      <input type='text' name='username' placeholder='Username' />
+      <input type='password' name='password' placeholder='Password' />
+      <input type='text' name='email' placeholder='email address' />
+      <select id="status" name="status" className="form-control" required="required">
+        <option value="na">Choose One:</option>
+        <option value="teacher">Teacher</option>
+        <option value="parent">Parent</option>
+      </select>
       <button type=submit>sign up</button>
     </form>
 

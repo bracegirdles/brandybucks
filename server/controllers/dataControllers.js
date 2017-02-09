@@ -119,5 +119,28 @@ module.exports = {
           res.send(data);
       })
     }
+  },
+
+  message: {
+    getParentEmail: function(req, res) {
+      var student_id = req.query.student_id;
+      knex.select('email').from('parents').where('student_id', '=', student_id)
+      .then(function(data) {
+        res.send(data);
+      })
+    },
+
+    postEmail: function(req, res) {
+      var newEmail = new Message({
+        teacher_id: req.body.teacher_id,
+        student_id: req.body.student_id,
+        text: req.body.text
+      });
+
+      newEmail.save()
+      .then(function(){
+        res.send('message saved')
+      })
+    }
   }
-}
+};
