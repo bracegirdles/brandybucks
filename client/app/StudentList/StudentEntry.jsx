@@ -9,7 +9,7 @@ const StudentEntry = props => (
       <td>{props.student.last_name}</td>
       <td>{props.student.first_name}</td>
       <td>{props.student.grade}</td>
-      <td><Link to="/viewlogs">{props.student.logCount}</Link></td>
+      <td><Link to="/viewlogs">{props.student.logCount || "None"}</Link></td>
     </tr>
 
 );
