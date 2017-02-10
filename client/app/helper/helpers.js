@@ -1,4 +1,5 @@
 // helper functions
+//
 
 exports.compareLastName = function (a,b) {
   if (a.last_name < b.last_name) {
