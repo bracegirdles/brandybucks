@@ -4,6 +4,7 @@ import {getStudentByName, logout} from '../helper/auth.js';
 import NavTop from './NavTop.jsx';
 import NavSide from './NavSide.jsx';
 
+
 class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -38,7 +39,6 @@ class Nav extends React.Component {
     getStudentByName(name)
     .then((resp) => {
       if (typeof resp.data === 'string') {
-        console.log(resp.data);
       } else {
         context.setState({
           studentName: resp.data.first_name + ' ' + resp.data.last_name,
@@ -83,7 +83,6 @@ class Nav extends React.Component {
   };
 
   render () {
-    console.log('this.props.sideBarLinks', this.props.sideBarLinks)
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
         <NavTop logOut={this.logOut} searchStudent={this.searchStudent}/>

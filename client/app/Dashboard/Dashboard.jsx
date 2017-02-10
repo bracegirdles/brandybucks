@@ -17,11 +17,8 @@ class Dashboard extends React.Component {
 
 
   componentWillReceiveProps(nextProps) {
-    // console.log('this.props', this.props)
-    // console.log('nextProps', nextProps)
     if (nextProps.status !== this.props.status) {
       var sideBarLinks = this.selectSideBarLinks(nextProps.status)
-      console.log('sideBarLinks', sideBarLinks);
       this.props.handleSideBarLinks(this.selectSideBarLinks(nextProps.status));
     }
   }
