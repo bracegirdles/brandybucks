@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import emotionalSpectrum from './emotionalSpectrumData.js'
-import formStyles from './forms.css';
+import css from '../../css/forms.css';
 
 const EmotionalStateRadio = function({ name, value, hexCode, checked, handleOptionChange }) {
   return (

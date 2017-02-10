@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import EmotionalStateRadio from './EmotionalStateRadio.jsx';
-import formStyles from './forms.css';
+import css from '../../css/forms.css';
 
 const EmotionalStateOption = function({ name, value, handleOptionChange, emotionalSpectrum }) {
   return (
