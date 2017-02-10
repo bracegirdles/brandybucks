@@ -101,7 +101,14 @@ module.exports = React.createClass({
         </div>
         <div className="form-group">
         <label>
-        Message
+          Subject:
+        </label>
+        <label>
+          To:
+        </label>
+        <input type="text" className="form-control" value="email" required/>
+        <label>
+          Message
         </label>
         <input type="text" className="form-control" value={this.state.log} onChange={this.handleLog} required/>
         </div>
