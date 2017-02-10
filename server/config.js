@@ -35,8 +35,11 @@ var bookshelf = require('bookshelf')(knex);
 //user schemas:
 
 //checks for a table's existence by tableName, resolving with a boolean to signal if the table exists
-// knex.schema.dropTableIfExists('students');
-knex.schema.dropTable('users');
+knex.schema.dropTableIfExists('students');
+knex.schema.dropTableIfExists('teachers');
+knex.schema.dropTableIfExists('parents');
+knex.schema.dropTableIfExists('logs');
+// knex.schema.dropTable('users');
 
 bookshelf.knex.schema.hasTable('teachers').then(function(exists) {
   if (!exists) {
@@ -48,10 +51,11 @@ bookshelf.knex.schema.hasTable('teachers').then(function(exists) {
       teacher.string('username', 100);
       teacher.string('password', 200);
       teacher.string('email', 200);
+      teacher.string('status', 200);
       teacher.timestamps();
 
     }).then(function (table) {
-    console.log('Created Table TEACHERS', table);
+    console.log('Created Table TEACHERS');
     });
   }
 });
@@ -65,10 +69,11 @@ bookshelf.knex.schema.hasTable('students').then(function(exists) {
       student.string('grade', 3);
       student.string('IEP', 100);
       student.string('pic', 100);
-      student.integer('logCount')
-      student.foreign('teacher_id').references('teachers.id');
+      student.integer('logCount');
+      student.integer('teacher_id').unsigned()
+      student.foreign('teacher_id').references('id').inTable('teachers');
     }).then(function (table) {
-    console.log('Created Table STUDENTS', table);
+    console.log('Created Table STUDENTS');
     });
   }
 });
@@ -84,12 +89,14 @@ bookshelf.knex.schema.hasTable('parents').then(function(exists) {
       parent.string('username', 100);
       parent.string('password', 200);
       parent.string('email', 200);
+      parent.string('status', 200);
       parent.string('optIn', 100);
-      parent.foreign('student_id').references('students.id');
+      parent.integer('student_id').unsigned();
+      parent.foreign('student_id').references('id').inTable('students');
       parent.timestamps();
 
     }).then(function (table) {
-    console.log('Created Table PARENTS', table);
+    console.log('Created Table PARENTS');
     });
   }
 });
@@ -97,12 +104,13 @@ bookshelf.knex.schema.hasTable('parents').then(function(exists) {
 bookshelf.knex.schema.hasTable('teachers_students').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('teachers_students', function(table) {
+      table.increments('id').primary();
       table.integer('student_id').unsigned();
-      table.foreign('student_id').references('students.id');
+      table.foreign('student_id').references('id').inTable('students');
       table.integer('teacher_id').unsigned();
-      table.foreign('teacher_id').references('teachers.id');
+      table.foreign('teacher_id').references('id').inTable('teachers');
     }).then(function (table) {
-    console.log('Created Table TEACHERS_STUDENTS', table);
+    console.log('Created Table TEACHERS_STUDENTS');
     });
   }
 });
@@ -114,33 +122,17 @@ bookshelf.knex.schema.hasTable('logs').then(function(exists) {
       table.increments('id').primary();
       table.text('log');
       table.integer('teacher_id').unsigned();
-      table.foreign('teacher_id').references('teacher.id');
+      table.foreign('teacher_id').references('id').inTable('teachers');
       table.string('teacher',100);
       table.integer('student_id').unsigned();
-      table.foreign('student_id').references('student.id');
+      table.foreign('student_id').references('id').inTable(
+        'students');
       table.integer('types');
       table.string('other', 200);
     }).then(function (table) {
-    console.log('Created Table LOGS', table);
+    console.log('Created Table LOGS');
     });
   }
 });
-
-bookshelf.knex.schema.hasTable('messages').then(function(exists) {
-  if (!exists) {
-    return knex.schema.createTable('messages', function(table) {
-      table.increments('id').primary();
-      table.text('messages');
-      table.integer('teacher_id').unsigned();
-      table.foreign('teacher_id').references('teacher.id');
-      table.integer('student_id').unsigned();
-      table.foreign('student_id').references('student.id');
-    }).then(function (table) {
-    console.log('Created Table MESSAGES', table);
-    });
-  }
-});
-
-
 
 module.exports = bookshelf;

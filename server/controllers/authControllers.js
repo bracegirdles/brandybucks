@@ -83,7 +83,8 @@ module.exports = {
                 email: req.body.email,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
-                password: req.body.password
+                password: req.body.password,
+                status: status,
               });
 
               newUser.save()
@@ -115,6 +116,7 @@ module.exports = {
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 password: password,
+                status: status,
               });
 
               newUser.save()
