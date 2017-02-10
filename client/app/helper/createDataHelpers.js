@@ -3,7 +3,7 @@ var Teacher = require('../../../server/models/teacher');
 var Parent = require('../../../server/models/parent');
 var Student = require('../../../server/models/student');
 
-var create = {
+var createData = {
   createFakeTeacher: function(req) {
     new Teacher ({ username: req.username })
       .fetch()
@@ -74,4 +74,4 @@ var create = {
   }
 };
 
-module.exports = create;
+module.exports = createData;
