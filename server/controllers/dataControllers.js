@@ -130,7 +130,7 @@ module.exports = {
       })
     },
 
-    postEmail: function(req, res) {
+    sendEmail: function(req, res) {
       var newEmail = new Message({
         teacher_id: req.body.teacher_id,
         student_id: req.body.student_id,
