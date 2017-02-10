@@ -81,6 +81,11 @@ class StudentForm extends React.Component{
       .then(function(resp) {
         context.setState({
           message: resp.data,
+          first_name: '',
+          last_name: '',
+          grade: '',
+          IEP: '',
+          pic: ''
         })
       })
       .catch(function(err) {
@@ -89,60 +94,41 @@ class StudentForm extends React.Component{
         })
         console.log('could not add student', err);
       })
-    this.setState({
-      first_name: '',
-      last_name: '',
-      grade: '',
-      IEP: '',
-      pic: ''
-    })
   }
 
   render() {
-    return(
+    return (
       <div className="formWidth">
-      <h1>Add New Student</h1>
-      <form onSubmit={this.submitClick}>
-        <div className="form-group">
-        <label>
-        First Name:
-        </label>
-        <input type="text" className="form-control" value={this.state.first_name} onChange={this.handleFirstName} required />
-        </div>
-        <div className="form-group">
-        <label>
-        Last Name:
-        </label>
-        <input type="text" className="form-control" value={this.state.last_name} onChange={this.handleLastName} required />
-        </div>
-        <div className="form-group">
-        <label>
-        Grade:
-        </label>
-        <input type="text" className="form-control" value={this.state.grade} onChange={this.handleGrade} required />
-        </div>
-        <div className="form-group">
-        <label>
-        IEP:
-        </label>
-        <input type="text" className="form-control" value={this.state.IEP} onChange={this.handleIEP} />
-        </div>
-        <div className="form-group">
-        <label>
-        Photo:
-        </label>
-        <input type="text" className="form-control" value={this.state.pic} onChange={this.handlePic} />
-        </div>
-        <div className="form-group">
-        <button className="btn search-btn">Add a student</button>
-        </div>
-      </form>
-        <div>
-        {this.state.message}
-        </div>
+        <h1>Add New Student</h1>
+        <form onSubmit={this.submitClick}>
+          <div className="form-group">
+            <label>First Name:</label>
+            <input type="text" className="form-control" value={this.state.first_name} onChange={this.handleFirstName} required />
+          </div>
+          <div className="form-group">
+            <label>Last Name:</label>
+            <input type="text" className="form-control" value={this.state.last_name} onChange={this.handleLastName} required />
+          </div>
+          <div className="form-group">
+            <label>Grade:</label>
+            <input type="text" className="form-control" value={this.state.grade} onChange={this.handleGrade} required />
+          </div>
+          <div className="form-group">
+            <label>IEP:</label>
+            <input type="text" className="form-control" value={this.state.IEP} onChange={this.handleIEP} />
+          </div>
+          <div className="form-group">
+            <label>Photo:</label>
+            <input type="text" className="form-control" value={this.state.pic} onChange={this.handlePic} />
+          </div>
+          <div className="form-group">
+            <button className="btn search-btn">Add a student</button>
+          </div>
+        </form>
+          <div>{this.state.message}</div>
       </div>
-    )
+    );
   }
 }
 
-export {StudentForm}
+export default StudentForm;
