@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "first_name": "Pat",
+    "last_name": "Shen",
+    "username": "pat",
+    "password": "pat",
+    "email": "patrick.lc.shen@gmail.com",
+    "status": "parent",
+    "optIn": "true",
+    "student_id": 1
+
+  },
+  {
+    "id": 2,
+    "first_name": "Jordan",
+    "last_name": "Medina",
+    "username": "jor",
+    "password": "jor",
+    "email": "jordanwmedina@gmail.com",
+    "status": "parent",
+    "optIn": "true",
+    "student_id": 2
+
+  },
+  {
+    "id": 3,
+    "first_name": "Maurice",
+    "last_name": "Okumu",
+    "username": "mau",
+    "password": "mau",
+    "email": "mauriceokumu5@gmail.com",
+    "status": "parent",
+    "optIn": "true",
+    "student_id": 3
+  },
+  {
+    "id": 4,
+    "first_name": "Anthony",
+    "last_name": "Pecchillo",
+    "username": "ant",
+    "password": "ant",
+    "email": "anthonypecchillo@icloud.com",
+    "status": "parent",
+    "optIn": "true",
+    "student_id": 2
+  }
+]

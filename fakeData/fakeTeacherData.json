@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "first_name": "Pat",
+    "last_name": "Shen",
+    "username": "pshen",
+    "password": "pshen",
+    "email": "patrick.lc.shen@gmail.com",
+    "status": "teacher"
+
+  },
+  {
+    "id": 2,
+    "first_name": "Jor",
+    "last_name": "Medina",
+    "username": "jmedina",
+    "password": "jmedina",
+    "email": "jordanwmedina@gmail.com",
+    "status": "teacher"
+
+  },
+  {
+    "id": 3,
+    "first_name": "Maur",
+    "last_name": "Okumu",
+    "username": "mok",
+    "password": "mok",
+    "email": "mauriceokumu5@gmail.com",
+    "status": "teacher"
+  },
+  {
+    "id": 4,
+    "first_name": "Ant",
+    "last_name": "Pecchillo",
+    "username": "ant",
+    "password": "ant",
+    "email": "anthonypecchillo@icloud.com",
+    "status": "teacher"
+  }
+]

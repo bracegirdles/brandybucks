@@ -52,6 +52,6 @@ exports.getParentEmail = () => {
   return axios.get('api/message/getParentEmail')
 };
 
-exports.addMessage = () => {
-  return axios.post('api/message/postEmail')
+exports.sendEmail = () => {
+  return axios.post('api/message/sendEmail')
 };

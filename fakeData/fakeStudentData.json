@@ -6,7 +6,8 @@
     "grade": 7,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 1
 
 
   },
@@ -17,7 +18,8 @@
     "grade": 2,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 2
 
   },
   {
@@ -27,7 +29,8 @@
     "grade": 1,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 3
   },
   {
     "id": 4,
@@ -36,7 +39,8 @@
     "grade": 6,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 4
   },
   {
     "id": 5,
@@ -45,7 +49,8 @@
     "grade": 3,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 1
   },
   {
     "id": 6,
@@ -54,7 +59,8 @@
     "grade": 1,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 2
   },
   {
     "id": 7,
@@ -63,7 +69,8 @@
     "grade": 10,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 3
   },
   {
     "id": 8,
@@ -72,7 +79,8 @@
     "grade": 6,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 4
   },
   {
     "id": 9,
@@ -81,7 +89,8 @@
     "grade": 5,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 1
   },
   {
     "id": 10,
@@ -90,6 +99,7 @@
     "grade": 6,
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
-    "logCount": 0
+    "logCount": 0,
+    "teacher_id": 2
   }
 ]

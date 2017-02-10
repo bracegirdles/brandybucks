@@ -10,6 +10,7 @@ var bookshelf = require('./config.js');
 var bodyParser = require('body-parser');
 var authRouter = require('./authRoutes.js');
 var dataRouter = require('./dataRoutes.js');
+var controller = require('./controllers/dataControllers');
 
 var authRedirectMiddleware = function(req, res, next){
   if(req.session.level === undefined) {
@@ -71,6 +72,9 @@ app.get('/llama.png', function(req, res) {
   // console.log('req.session from /login', req.session)
   res.sendFile(path.join(__dirname, './authViews', 'llama.png'));
 });
+
+
+app.post('/message/sendEmail', controller.message.sendEmail);
 
 // Set up our login/logout api routes
 app.use('/authApi', authRouter);
