@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+}
+
+h1 {
+  margin: auto;
+  width: 50%;
+}
+
+.date {
+  float: right;
+  display: block;
+}
+
+.date input {
+  margin-left: 10px;
+}
+
+.radio {
+  display: inline-block;
+  margin-right: 3%;
+  /*font-size: 50px;*/
+}
+
+.radio input {
+  /*visibility: hidden;*/
+}
+
+.radio input:checked {
+  background-color: gray;
+}
+
+.btn {
+  float: right;
+  display: block;
+}
