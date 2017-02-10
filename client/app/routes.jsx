@@ -5,6 +5,7 @@ import App from './App.jsx';
 import CreateLog from './CreateLog.jsx';
 import CreateNote from './CreateNote.jsx';
 import CreateGoal from './CreateGoal.jsx';
+import SendEmail from './SendEmail.jsx';
 import {Goals} from './Goals.jsx';
 import {IEP} from './IEP.jsx';
 import {MeetingNotes} from './MeetingNotes.jsx';
@@ -23,6 +24,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Dashboard} />
     <Route path="createlog" component={CreateLog} />
+    <Route path="email" component={SendEmail} />
     <Route path="goals" component={Goals} />
     <Route path="iep" component={IEP} />
     <Route path="meetingnotes" component={MeetingNotes} />
