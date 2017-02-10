@@ -1,10 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Nav from './Nav.jsx';
-import {getSearchStudents} from './helper/auth.js';
-import {getAllStudents} from './helper/auth.js';
-import {compareLastName} from './helper/helpers.js';
-import {getUserStatus} from './helper/auth.js';
+import Nav from './Nav/Nav.jsx';
+import {getSearchStudents, getAllStudents, getUserStatus} from './helper/auth.js';
+import {compareLastName} from './helper/helpers';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,89 +11,68 @@ class App extends React.Component {
     this.state = {
       student_id: '',
       studentObj: '',
-      student_array: [],
-      searchInput: '',
-      status: ''
+      status: '',
+      students: [],
+      sideBarLinks: []
     };
 
-    this.clickedStudent = this.clickedStudent.bind(this);
+    this.handleClickedStudent = this.handleClickedStudent.bind(this);
+    this.handleSideBarLinks = this.handleSideBarLinks.bind(this);
   }
 
+  // ----------------------------------------------
+  // Component Lifecycle Functions
+  // ----------------------------------------------
   componentDidMount() {
-    getUserStatus().then(session => {
-      this.setState({
-        status: session.data.status
-      });
-    })
+    if (this.state.status === '') {
+      getUserStatus().then(session => {
+        this.setState({
+          status: session.data.status
+        });
+      })
+    }
+
+    if (this.state.students.length === 0) {
+      getAllStudents()
+      .then(res => {
+        this.setState({
+          students: res.data.sort(compareLastName)
+        });
+      })
+    }
   }
 
-  //method to handle click on student
-  clickedStudent(e) {
+  // ----------------------------------------------
+  // Event Handlers
+  // ----------------------------------------------
+  handleSideBarLinks(list) {       // this is passed down to NavSide
     this.setState({
-      studentObj: e.eachStudent
+      sideBarLinks: list
+    });
+  }
+
+
+  handleClickedStudent(clickedProps) {
+    this.setState({
+      studentObj: clickedProps.student
     });
     console.log("student clicked", this.state.studentObj);
   }
 
-  getStudentId(id) {
-    this.setState({
-      student_id: id
-    });
-  }
-
-  searchClicked (e) {
-    let queryName = this.capitalizeName(this.state.searchInput);
-
-    if (e.key === "Enter") {
-      this.searchStudent(queryName);
-      this.setState({
-        searchInput: '',
-      })
-    } else if (e.button === 0) {
-      this.searchStudent(queryName);
-      this.setState({
-        searchInput: '',
-      })
-    }
-
-  };
-
-  handleGetSearch(e) {
-    getSearchStudents(e).then((resp) => {
-      this.setState({
-        student_array: resp.data.sort(compareLastName),
-      });
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
-
-  componentWillMount() {
-    getAllStudents().then((resp) => {
-      this.setState({
-        student_array: resp.data.sort(compareLastName),
-      });
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
-
   render () {
-    console.log('status', this.state.status)
     var childrenWithProps = React.cloneElement(this.props.children, {
       student_id: this.state.student_id,
       studentObj: this.state.studentObj,
-      clickedStudent: this.clickedStudent,
-      student_array: this.state.student_array,
-      handleGetSearch: this.handleGetSearch.bind(this),
-      searchClicked: this.searchClicked.bind(this),
-      status: this.state.status
+      status: this.state.status,
+      students: this.state.students,
+      handleClickedStudent: this.handleClickedStudent,
+      handleSideBarLinks: this.handleSideBarLinks
     });
-    // console.log('$$$$$$$$$$$$$$$$**', this.state.student_id);
+
     return (
       <div>
-        <Nav handleSearchInputChange={this.getStudentId.bind(this)} studentObj={this.state.studentObj}
-          handleGetSearch={this.handleGetSearch.bind(this)} />
+        <Nav studentObj={this.state.studentObj}
+             sideBarLinks={this.state.sideBarLinks} />
         {childrenWithProps}
       </div>
     );
