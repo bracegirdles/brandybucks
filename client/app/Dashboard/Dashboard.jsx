@@ -15,6 +15,19 @@ class Dashboard extends React.Component {
     this.selectDesc = this.selectDesc.bind(this);
   }
 
+
+  componentWillReceiveProps(nextProps) {
+    // console.log('this.props', this.props)
+    // console.log('nextProps', nextProps)
+    if (nextProps.status !== this.props.status) {
+      var sideBarLinks = this.selectSideBarLinks(nextProps.status)
+      console.log('sideBarLinks', sideBarLinks);
+      this.props.handleSideBarLinks(this.selectSideBarLinks(nextProps.status));
+    }
+  }
+  // ----------------------------------------------
+  // Event Handlers
+  // ----------------------------------------------
   handleHover(panel) {
     this.setState({
       panel: panel,
@@ -22,6 +35,9 @@ class Dashboard extends React.Component {
     });
   }
 
+  // ----------------------------------------------
+  // Helper Functions
+  // ----------------------------------------------
   selectDesc(panel) {
     const descriptions = {
       welcome: `Welcome to the llama Dashboard`,
@@ -32,6 +48,48 @@ class Dashboard extends React.Component {
       settings: 'Update your personal settings'
     }
     return descriptions[panel];
+  }
+
+  selectSideBarLinks(status) {
+    if (status === 'teacher') {
+      return [
+        {
+          name: 'Home',
+          endpoint: '/'
+        },
+        {
+          name: 'Students',
+          endpoint: '/students'
+        },
+        {
+          name: 'Calendar',
+          endpoint: '/calendar'
+        },
+        {
+          name: 'Settings',
+          endpoint: '/settings'
+        }
+      ]
+    } else {
+      return [
+        {
+          name: 'Home',
+          endpoint: '/'
+        },
+        {
+          name: 'Children',
+          endpoint: '/children'
+        },
+        {
+          name: 'Schedule',
+          endpoint: '/schedule'
+        },
+        {
+          name: 'Settings',
+          endpoint: '/settings'
+        }
+      ]
+    }
   }
 
   render() {
