@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
+import EmotionalStateRadio from './EmotionalStateRadio.jsx';
+import formStyles from './forms.css';
 
-class emotionalState extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: false,
-    };
-  }
-
-render() {
+const EmotionalStateOption = function({ name, value, handleOptionChange, emotionalSpectrum }) {
   return (
-    <div className="radio">
-    <label>
-      <input type="radio" value="option1" checked={this.state.selectedOption === 'option1'} onChange={this.handleOptionChange} />
-      {String.fromCharCode(0xD83D, 0xDE04)}
-    </label>
-  </div>
-  );
+    <div className="radio-group">
+      {emotionalSpectrum.map(({affect: affectValue, hexCode}, index) =>
+        <EmotionalStateRadio name={name}
+                             value={affectValue}
+                             hexCode={hexCode}
+                             checked={affectValue === value}
+                             handleOptionChange={handleOptionChange}
+                             key={index}
+        >
+        </EmotionalStateRadio>
+      )}
+    </div>
+  );  
 }
+
+EmotionalStateOption.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  handleOptionChange: PropTypes.func.isRequired,
+  emotionalSpectrum: PropTypes.array.isRequired
+};
+
+export default EmotionalStateOption;
