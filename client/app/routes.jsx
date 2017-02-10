@@ -6,6 +6,7 @@ import CreateLog from './CreateLog.jsx';
 import CreateNote from './CreateNote.jsx';
 import CreateGoal from './CreateGoal.jsx';
 import SendEmail from './SendEmail.jsx';
+import EmotionalStateForm from './forms/EmotionalStateForm.jsx';
 import {Goals} from './Goals.jsx';
 import {IEP} from './IEP.jsx';
 import {MeetingNotes} from './MeetingNotes.jsx';
@@ -29,7 +30,7 @@ export default (
     <Route path="iep" component={IEP} />
     <Route path="meetingnotes" component={MeetingNotes} />
     <Route path="createnote" component={CreateNote} />
-    <Route path="creategoal" component={CreateGoal} />
+    <Route path="creategoal" component={EmotionalStateForm} />
     <Route path="viewlogs" component={ViewLogs} />
     <Route path="addstudent" component={StudentForm} />
 
