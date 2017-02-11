@@ -1,5 +1,25 @@
 import axios from 'axios'
 
+exports.getEmotionalStateData = (emotionalStateEntry) => {
+  return axios.get('api/emotionalStateData'); 
+};
+
+exports.getIntersestEngagementData = (interestEngagementEntry) => {
+  return axios.get('api/interestEngagementData');
+};
+
+exports.getInterpersonalSkillsData = (interpersonalSkillsEntry) => {
+    return axios.get('api/interpersonalSkillsData');
+};
+
+exports.getAttendanceData = (attendanceEntry) => {
+    return axios.get('api/attendanceData');
+};
+
+exports.getMaturityData = (maturityEntry) => {
+  return axios.get('api/maturityData');
+};
+
 exports.addEmotionalStateData = (emotionalStateEntry) => {
   return axios({
     method: 'POST',
