@@ -28,11 +28,12 @@ exports.getStudentByName = (name) => {
   })
 };
 
-exports.getSearchStudents = (string, user_id) => {
+exports.getSearchStudents = (string, user_id, status) => {
   return axios.get('api/students/getSearch', {
     params: {
       name: string,
       user_id: user_id,
+      status: status,
     }
   })
 };

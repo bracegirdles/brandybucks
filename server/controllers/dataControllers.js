@@ -34,15 +34,39 @@ module.exports = {
 
     getSearch: function(req, res) {
       var searchString = '%' + req.query.name + '%';
-      knex('students')
-      .select('*')
-      .where('first_name', 'like', searchString).orWhere('last_name', 'like', searchString)
-      .then(function(data) {
-        res.send(data);
-      })
-    }
-  },
 
+      if (req.query.status === 'teacher') {
+        knex('students')
+        .select('*')
+        .where(function() {
+          this.where('first_name', 'like', searchString).orWhere('last_name', 'like', searchString)})
+        .where('teacher_id', '=', req.query.user_id)
+        .then(function(data) {
+          res.send(data);
+        })
+      }
+
+      if (req.query.status === 'parent') {
+        knex('students')
+        .select('*')
+        .where('id', '=',
+          knex('parents')
+          .select('student_id')
+          .where('id', '=', req.query.user_id)
+          )
+        .then(function(data) {
+          res.send(data);
+        })
+      }
+    },
+  },
+/*
+knex('users').where(function() {
+  this.where('id', 1).orWhere('id', '>', 10)
+}).orWhere({name: 'Tester'})
+Outputs:
+select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
+*/
   studentInfo: {
 //
     post: function(req, res) {

@@ -92,7 +92,7 @@ class App extends React.Component {
   }
 
   handleSearchStudent(e) {
-    getSearchStudents(e, this.state.user_id).then((resp) => {
+    getSearchStudents(e, this.state.user_id, this.state.status).then((resp) => {
       this.setState({
         students: resp.data.sort(compareLastName)
       });
