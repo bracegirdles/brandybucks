@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import Nav from './Nav/Nav.jsx';
 import {getSearchStudents, getAllStudents, getUserStatus} from './helper/auth.js';
 import {compareLastName} from './helper/helpers';
+import {browserHistory} from 'react-router';
 
 class App extends React.Component {
   constructor(props) {
@@ -42,6 +43,13 @@ class App extends React.Component {
     }
   }
 
+  // Debugging Utility Lifecycle Function
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('app prevState', prevState);
+  //   console.log('app this.state', this.state);
+  // }
+
+
   // ----------------------------------------------
   // Event Handlers
   // ----------------------------------------------
@@ -52,10 +60,11 @@ class App extends React.Component {
   }
 
 
-  handleClickedStudent(clickedProps) {
+  handleClickedStudent(student) {
     this.setState({
-      studentObj: clickedProps.student
+      studentObj: student
     });
+    browserHistory.push('/student');
     console.log("student clicked", this.state.studentObj);
   }
 
@@ -66,7 +75,8 @@ class App extends React.Component {
       status: this.state.status,
       students: this.state.students,
       handleClickedStudent: this.handleClickedStudent,
-      handleSideBarLinks: this.handleSideBarLinks
+      handleSideBarLinks: this.handleSideBarLinks,
+      sideBarLinks: this.state.sideBarLinks
     });
 
     return (
