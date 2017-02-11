@@ -11,29 +11,53 @@ class EmotionalStateForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: [],
-      morningMood: 'So Fucking Happy',
-      noonMood: 'So Fucking Happy',
-      endMood: 'So Fucking Happy'
+      date: null,
+      morningMood: 4,
+      noonMood: 4,
+      endMood: 4,
+      teacherNotes: null,
     };
 
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  handleDateChange(changeEvent) {
+    this.setState({
+      date: changeEvent.target.value
+    });
+  }
+
   handleOptionChange(changeEvent) {
     this.setState({
-      [changeEvent.target.name]: changeEvent.target.value
+      [changeEvent.target.name]: Number(changeEvent.target.value)
     });
   }
 
   handleFormSubmit(formSubmitEvent) {
     formSubmitEvent.preventDefault();
+    
+    //Construct object based on all state variables
+    const emotionalState = {
+      date: this.state.date,
+      morning_mood_score: this.state.morningMood,
+      noon_mood_score: this.state.noonMood,
+      end_mood_score: this.state.endMood,
+      teacher_notes: this.state.teacherNotes,
+      student_id: this.props.student.student_id,
+      teacher_id: this.props.student.teacher_id
+    }
 
-    console.log('You have selected: ', this.state.morningMood, this.state.noonMood, ' and ', this.state.endMood);
+    console.log(emotionalState);
+
+    //call helper function with above object as argument
+    //
+    console.log('You have selected: ', this.state.morningMood, this.state.noonMood, ' and ', this.state.endMood, ' and ', this.state.date);
   }
 
   render() {
+    // console.log(this.state);
     return (
       <div className="container">
       <h1>How are you feeling?</h1>
@@ -43,7 +67,7 @@ class EmotionalStateForm extends React.Component {
               <div className="date">
                 <label>
                   Today is:
-                  <input type="date" name="date" />
+                  <input type="date" name="date" onChange={this.handleDateChange} />
                 </label>
               </div>
               <h3>This morning, I'm feeling:</h3>  
