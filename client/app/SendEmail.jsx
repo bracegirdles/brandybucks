@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import {getAllStudents} from './helper/auth.js'
 import {addLog} from './helper/auth.js';
+// import controller from '../../server/controllers/dataControllers.js';
+// var message = require('../../server/controllers/dataControllers.js');
+// var message: require('../../server/controllers/dataControllers.js');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -12,7 +15,7 @@ module.exports = React.createClass({
       subject: '',
       message: '',
       student: 'select student'
-      
+
     }
   },
 
@@ -125,7 +128,7 @@ module.exports = React.createClass({
                     </label>
                     <input type="text" className="form-control" name="message"  value={this.state.message} onChange={this.handleMessage} required/>
                   </div>
-    
+
                   <div className="alignright2">
                     <input type="submit" className="btn search-btn" value="Email parent" />
                   </div>
