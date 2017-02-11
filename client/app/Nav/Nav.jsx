@@ -23,10 +23,10 @@ class Nav extends React.Component {
   // Component Lifecycle Functions
   // ----------------------------------------------
   shouldComponentUpdate(nextState) {
-  if (this.props.studentObj !== nextState) {
-    return true;
-  }
-  return false
+    if (this.props.studentObj !== nextState) {
+      return true;
+    }
+    return false;
   }
 
   // ----------------------------------------------

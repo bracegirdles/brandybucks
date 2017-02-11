@@ -68,6 +68,13 @@ class App extends React.Component {
     console.log("student clicked", this.state.studentObj);
   }
 
+  handleSearchStudent(e) {
+    this.setState({
+      students: getSearchStudents(e)
+    });
+    console.log('searching students');
+  }
+
   render () {
     var childrenWithProps = React.cloneElement(this.props.children, {
       student_id: this.state.student_id,
@@ -77,6 +84,7 @@ class App extends React.Component {
       handleClickedStudent: this.handleClickedStudent,
       handleSideBarLinks: this.handleSideBarLinks,
       sideBarLinks: this.state.sideBarLinks
+      handleSearchStudent: this.handleSearchStudent
     });
 
     return (
