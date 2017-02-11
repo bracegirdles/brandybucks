@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-exports.getAllStudents = () => {
-  return axios.get('api/students/getAll')
+exports.getAllStudents = (user_id) => {
+  return axios.get('api/students/getAll', {
+    params: {
+      user_id: user_id
+    }
+  })
 };
 
 exports.getUserStatus = () => {

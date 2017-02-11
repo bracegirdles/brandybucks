@@ -79,6 +79,7 @@ module.exports = {
       // debugger;
       knex('students')
       .select('*')
+      .where('teacher_id', '=', req.query.user_id)
       .then(function(data){
         // console.log('gettign data', data);
         res.send(data);

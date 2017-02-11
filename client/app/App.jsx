@@ -16,7 +16,8 @@ class App extends React.Component {
       students: [],
       sideBarLinks: [],
       searchInput: '',
-      userName: ''
+      userName: '',
+      user_id: '',
     };
 
     this.handleClickedStudent = this.handleClickedStudent.bind(this);
@@ -30,21 +31,25 @@ class App extends React.Component {
   componentDidMount() {
     if (this.state.status === '') {
       getUserStatus().then(session => {
+        const user = session.data.user;
         this.setState({
-          status: session.data.user.status,
-          userName: session.data.user.first_name + ' ' + session.data.user.last_name
+          status: user.status,
+          userName: user.first_name + ' ' + user.last_name,
+          user_id: user.id,
         });
-      })
+
+        if (this.state.status === 'teacher') {
+          getAllStudents(this.state.user_id)
+          .then(res => {
+            this.setState({
+              students: res.data.sort(compareLastName)
+            });
+          })
+        }
+
+      });
     }
 
-    if (this.state.students.length === 0) {
-      getAllStudents()
-      .then(res => {
-        this.setState({
-          students: res.data.sort(compareLastName)
-        });
-      })
-    }
   }
 
   // Debugging Utility Lifecycle Function
