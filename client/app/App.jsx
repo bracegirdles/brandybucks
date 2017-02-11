@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import Nav from './Nav/Nav.jsx';
-import {getSearchStudents, getAllStudents, getUserStatus} from './helper/auth.js';
+import {getSearchStudents, getAllStudents, getUserStatus, getChildren} from './helper/auth.js';
 import {compareLastName} from './helper/helpers';
 import {browserHistory} from 'react-router';
 
@@ -45,6 +45,15 @@ class App extends React.Component {
               students: res.data.sort(compareLastName)
             });
           })
+        }
+
+        if (this.state.status === 'parent') {
+          getChildren(this.state.user_id)
+          .then(res => {
+            this.setState({
+              students: res.data.sort(compareLastName)
+            });
+          });
         }
 
       });

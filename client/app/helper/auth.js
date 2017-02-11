@@ -8,9 +8,17 @@ exports.getAllStudents = (user_id) => {
   })
 };
 
+exports.getChildren = (user_id) => {
+  return axios.get('api/students/getChildren', {
+    params: {
+      user_id: user_id
+    }
+  })
+};
+
 exports.getUserStatus = () => {
   return axios.get('api/user/status');
-}
+};
 
 exports.getStudentByName = (name) => {
   return axios.get('api/students/name', {

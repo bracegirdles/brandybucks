@@ -72,9 +72,13 @@ export default (
     <Route path="createnote" component={CreateNote} />
     <Route path="viewlogs" component={ViewLogs} />
 
-
-    <Route path="createnote" component={CreateNote} />
     <Route path="creategoal" component={CreateGoal} />
     <Route path="addstudent" component={StudentForm} />
+
+    <Route path="students" component={StudentList} />
+    <Route path="children" component={StudentList} />
+    <Route path="statistics" component={Charts} />
+    <Route path="schedule" component={Schedule} />
+    <Route path="settings" component={Settings} />
   </Route>
 )

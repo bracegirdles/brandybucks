@@ -84,7 +84,21 @@ module.exports = {
         // console.log('gettign data', data);
         res.send(data);
       })
-    }
+
+    },
+
+    getChildren: function(req, res) {
+      knex('students')
+      .select('*')
+      .where('id', '=',
+        knex('parents')
+        .select('student_id')
+        .where('id', '=', req.query.user_id)
+        )
+      .then(function(data) {
+        res.send(data);
+      })
+    },
 
   },
 
@@ -327,7 +341,7 @@ module.exports = {
     // },
 
     post: function(req, res) {
-      
+
       knex('students')
       .where('id', '=', student_id)
       .increment('attendanceCount', 1)
@@ -345,7 +359,7 @@ module.exports = {
 
       newAttendance.save().then(function() {
         res.send('Attendance update saved in database.')
-      });      
+      });
     }
   },
 
@@ -371,7 +385,7 @@ module.exports = {
     // },
 
     post: function(req, res) {
-      
+
       knex('students')
       .where('id', '=', student_id)
       .increment('maturityCount', 1)
@@ -392,10 +406,10 @@ module.exports = {
         student_id: req.body.
         teacher_id: req.body.
       })
-      
+
       newMaturity.save().then(function() {
         res.send('Maturity update saved in database.')
-      });      
+      });
     }
   }
 };
