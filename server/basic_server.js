@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-
+var Promise = require('bluebird');
 var path = require('path');
 
 var session = require('express-session')
@@ -74,7 +74,6 @@ app.get('/llama.png', function(req, res) {
 });
 
 
-app.post('/message/sendEmail', controller.message.sendEmail);
 
 // Set up our login/logout api routes
 app.use('/authApi', authRouter);
@@ -106,6 +105,33 @@ app.get('/api/user/status', function(req, res) {
   res.json(req.session)
 })
 
+app.post('/message/sendEmail',function( req, res) {
+  var api_key = 'key-a4adcb76128e81840885c80dfa7c028f';
+  var domain = 'sandbox5b382708aa494c69950bda153a5f9af2.mailgun.org';
+  var mailgun = require('mailgun-js')({
+    apiKey: api_key,
+    domain: domain
+  });
+  var data = {
+    from: req.body.author+'<postmaster@sandbox5b382708aa494c69950bda153a5f9af2.mailgun.org>',
+    to: req.body.email,
+    subject: req.body.subject,
+    html: "<b style='color:green'>Message: "+req.body.message+"</b><br>Visit <a href=http://localhost:3000/login >Login page</a> for a detailed log entry</br>"
+  }
+  
+  return Promise.promisify((function(){
+    mailgun.messages()
+    .send(data, function(err, body) {
+      if (err) {
+        res.send('Your mail was not sent')
+      } else {
+
+        res.render('/message');
+      }
+  })})
+  )()
+
+});
 // catch any other urls and send to index.html in /../client
 app.get('*', function(req, res) {
 
