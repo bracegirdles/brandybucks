@@ -9,22 +9,43 @@ module.exports = {
     post: function(req, res) {
       var username = req.body.username;
       var password = req.body.password;
-      var status = req.body.status;
+      // var status = req.body.status;fd
 
-      if (status === 'teacher') {
         new Teacher({username: username})
           .fetch()
           .then(function(user) {
             if (!user) {
-              // res.send('no user by that name')
-              res.redirect('/')
+              // check parents
+              new Parent({ username: username })
+                .fetch()
+                .then(function(user) {
+                  if (!user) {
+                    // res.send('no user by that name')
+                    res.redirect('/')
+                  } else {
+
+                    user.comparePassword(password, function(match) {
+                      if (match) {
+
+                        // set the permissions level
+                        req.session.level = 'loggedIn';
+                        req.session.user = user;
+                        // localStorage.setItem('status', user.)
+                        res.redirect('/')
+
+                      } else {
+                        res.redirect('/')
+                      }
+                    });
+                  }
+                });
+
             } else {
               user.comparePassword(password, function(match) {
                 if (match) {
 
                   // set the permissions level
                   req.session.level = 'loggedIn';
-                  req.session.status = status;
                   req.session.user = user
                   res.redirect('/')
 
@@ -34,34 +55,11 @@ module.exports = {
               });
             }
           });
-      }
 
-      if (status === 'parent') {
-        new Parent({ username: username })
-          .fetch()
-          .then(function(user) {
-            if (!user) {
-              // res.send('no user by that name')
-              res.redirect('/')
-            } else {
 
-              user.comparePassword(password, function(match) {
-                if (match) {
 
-                  // set the permissions level
-                  req.session.level = 'loggedIn'
-                  req.session.status = status;
-                  req.session.user = user;
-                  // localStorage.setItem('status', user.)
-                  res.redirect('/')
 
-                } else {
-                  res.redirect('/')
-                }
-              });
-            }
-          });
-      }
+
     }
   },
 

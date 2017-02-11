@@ -31,7 +31,7 @@ class App extends React.Component {
     if (this.state.status === '') {
       getUserStatus().then(session => {
         this.setState({
-          status: session.data.status,
+          status: session.data.user.status,
           userName: session.data.user.first_name + ' ' + session.data.user.last_name
         });
       })
