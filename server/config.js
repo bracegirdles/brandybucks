@@ -76,6 +76,11 @@ bookshelf.knex.schema.hasTable('students').then(function(exists) {
       student.string('IEP', 100);
       student.string('pic', 100);
       student.integer('logCount');
+      student.integer('emotionalStateCount');
+      student.integer('interestAndEngagementCount');
+      student.integer('interpersonalSkillsCount');
+      student.integer('attendanceCount');
+      student.integer('maturityCount');
       student.integer('teacher_id').unsigned()
       student.foreign('teacher_id').references('id').inTable('teachers');
     }).then(function (table) {
@@ -151,9 +156,9 @@ bookshelf.knex.schema.hasTable('emotional_state_data').then(function(exists) {
       emotionalStateEntry.date('date');
 
       // Emotional State Section
-      emotionalStateEntry.number('morning_mood_score');
-      emotionalStateEntry.number('noon_mood_score');
-      emotionalStateEntry.number('end_mood_score');
+      emotionalStateEntry.integer('morning_mood_score');
+      emotionalStateEntry.integer('noon_mood_score');
+      emotionalStateEntry.integer('end_mood_score');
 
       // Teacher Notes Section
       emotionalStateEntry.string('teacher_notes', 400);
@@ -181,25 +186,25 @@ bookshelf.knex.schema.hasTable('interest_and_engagement_data').then(function(exi
       interestEngagementEntry.date('date');
 
       // Reading Section
-      interestEngagementEntry.number('r_performance_score');
-      interestEngagementEntry.number('r_participation_score');
-      interestEngagementEntry.number('r_enjoyment_score');
-      interestEngagementEntry.number('r_interest_score');
-      interestEngagementEntry.number('r_repeatability_score');
+      interestEngagementEntry.integer('r_performance_score');
+      interestEngagementEntry.integer('r_participation_score');
+      interestEngagementEntry.integer('r_enjoyment_score');
+      interestEngagementEntry.integer('r_interest_score');
+      interestEngagementEntry.integer('r_repeatability_score');
 
       // Writing Section
-      interestEngagementEntry.number('w_reading_performance_score');
-      interestEngagementEntry.number('w_participation_score');
-      interestEngagementEntry.number('w_enjoyment_score');
-      interestEngagementEntry.number('w_interest_score');
-      interestEngagementEntry.number('w_repeatability_score');
+      interestEngagementEntry.integer('w_reading_performance_score');
+      interestEngagementEntry.integer('w_participation_score');
+      interestEngagementEntry.integer('w_enjoyment_score');
+      interestEngagementEntry.integer('w_interest_score');
+      interestEngagementEntry.integer('w_repeatability_score');
 
       // Math Section
-      interestEngagementEntry.number('m_reading_performance_score');
-      interestEngagementEntry.number('m_participation_score');
-      interestEngagementEntry.number('m_enjoyment_score');
-      interestEngagementEntry.number('m_interest_score');
-      interestEngagementEntry.number('m_repeatability_score');
+      interestEngagementEntry.integer('m_reading_performance_score');
+      interestEngagementEntry.integer('m_participation_score');
+      interestEngagementEntry.integer('m_enjoyment_score');
+      interestEngagementEntry.integer('m_interest_score');
+      interestEngagementEntry.integer('m_repeatability_score');
 
       // Teacher Notes Section
       interestEngagementEntry.string('teacher_notes', 400);
@@ -227,23 +232,23 @@ bookshelf.knex.schema.hasTable('interpersonal_skills_data').then(function(exists
       interpersonalSkillsEntry.date('date');
 
       // Cooperation With Teacher and Aids Section
-      interpersonalSkillsEntry.number('coop_listen_to_instruction_score');
+      interpersonalSkillsEntry.integer('coop_listen_to_instruction_score');
 
       // One-on-One Interactions Section
         // Empathy Sub-Section
-        interpersonalSkillsEntry.number('1on1_cheering_up_others_score');
-        interpersonalSkillsEntry.number('1on1_empowering_others_score');
+        interpersonalSkillsEntry.integer('one_on_one_cheering_up_others_score');
+        interpersonalSkillsEntry.integer('one_on_one_empowering_others_score');
         // Selflessness Sub-Section
-        interpersonalSkillsEntry.number('1on1_helping_others_score');
-        interpersonalSkillsEntry.number('1on1_sharing_score');
+        interpersonalSkillsEntry.integer('one_on_one_helping_others_score');
+        interpersonalSkillsEntry.integer('one_on_one_sharing_score');
 
       // Classroom Dynamics Section
-      interpersonalSkillsEntry.number('cd_behavior_score');
-      interpersonalSkillsEntry.number('cd_morale_score');
+      interpersonalSkillsEntry.integer('cd_behavior_score');
+      interpersonalSkillsEntry.integer('cd_morale_score');
 
       // Teacher Notes Section
       interpersonalSkillsEntry.string('coop_notes', 400);
-      interpersonalSkillsEntry.string('1on1_notes', 400);
+      interpersonalSkillsEntry.string('one_on_one_notes', 400);
       interpersonalSkillsEntry.string('cd_notes', 400);
 
       // Foreign Keys
@@ -272,7 +277,7 @@ bookshelf.knex.schema.hasTable('attendance_data').then(function(exists) {
       attendanceEntry.string('presence', 10);
 
       // Teacher Notes
-      attendanceEntry.string('presence', 400);
+      attendanceEntry.string('teacher_notes', 400);
 
       // Foreign Keys
       attendanceEntry.integer('student_id').unsigned();
@@ -281,7 +286,7 @@ bookshelf.knex.schema.hasTable('attendance_data').then(function(exists) {
       attendanceEntry.foreign('teacher_id').references('teacher.id');
 
       // Time Stamp
-      attendnaceEntry.timestamps();
+      attendanceEntry.timestamps();
     }).then(function (table) {
     console.log('Created Table ATTENDANCE_DATA', table);
     });
@@ -297,14 +302,14 @@ bookshelf.knex.schema.hasTable('maturity_data').then(function(exists) {
       maturityEntry.date('date');
 
       // General Maturity Section
-      maturityEntry.number('response_general_score');
-      maturityEntry.number('response_adversity_score');
+      maturityEntry.integer('response_general_score');
+      maturityEntry.integer('response_adversity_score');
 
       // Disability Management Section
-      maturityEntry.number('disability_induced_stress_general_score');
-      maturityEntry.number('disability_induced_stress_trigger_score');
-        maturityEntry.number('trigger_response_decision_score');
-        maturityEntry.number('behavioral_output_score');
+      maturityEntry.integer('disability_induced_stress_general_score');
+      maturityEntry.integer('disability_induced_stress_trigger_score');
+        maturityEntry.integer('trigger_response_decision_score');
+        maturityEntry.integer('behavioral_output_score');
 
       // Teacher Notes Section
       maturityEntry.string('general_maturity_notes', 400);
