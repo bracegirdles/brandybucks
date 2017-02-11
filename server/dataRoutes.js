@@ -21,5 +21,21 @@ router.get('/emotionalStateData', controller.emotionalState.get);
 
 router.get('/emotionalStateData', controller.emotionalState.post);
 
+router.get('/interestEngagementData', controller.interestEngagement.get);
+
+router.get('/interestEngagementData', controller.interestEngagement.post);
+
+router.get('/interpersonalSkillsData', controller.interpersonalSkills.get);
+
+router.get('/interpersonalSkillsData', controller.interpersonalSkills.post);
+
+router.get('/attendanceData', controller.attendance.get);
+
+router.get('/attendanceData', controller.attendance.post);
+
+router.get('/maturityData', controller.maturity.get);
+
+router.get('/maturityData', controller.maturity.post);
+
 module.exports = router;
 
