@@ -7,11 +7,12 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       students: [],
-      id: '',
       author: '',
-      log: '',
-      types: 3,
-      action: 'mailto:parent@example.com?subject=Update from llama&body='
+      email: '',
+      subject: '',
+      message: '',
+      student: 'select student'
+      
     }
   },
 
@@ -32,20 +33,26 @@ module.exports = React.createClass({
       author: e.target.value,
     });
   },
-
-  handleStudent(e) {
+  handleEmail(e) {
     this.setState({
-      id: e.target.value,
+      email: e.target.value,
+    });
+  },
+  handleSubject(e) {
+    this.setState({
+      subject: e.target.value,
     });
   },
 
-  handleLog(e) {
+  handleStudent(e) {
     this.setState({
-      log: e.target.value,
+      student: e.target.value,
     });
-    var action = this.state.action.slice(0,57) + this.state.log;
+  },
+
+  handleMessage(e) {
     this.setState({
-      action: action,
+      message: e.target.value,
     });
   },
 
@@ -54,74 +61,79 @@ module.exports = React.createClass({
     let log = {
       id: this.state.id,
       author: this.state.author,
-      log: this.state.log,
-      types: this.state.types
+      message: this.state.message,
+      email: this.state.email,
+      subject: this.state.subject,
+
     }
-    addLog(log)
-      .then(function(resp) {
-      console.log('log added');
-      })
-      .catch(function(err) {
-        console.log('could not add log', err);
-      });
     this.setState({
       author: '',
-      log: ''
+      message: '',
+      email: '',
+      subject: '',
+      student: 'select student',
+      students: []
+
     });
+    return axios({
+      method: 'POST',
+      url: '/message/sendEmail',
+      data: log
+    })
   },
 
   render: function() {
     return (
       <div id="wrapper">
-      <div className="container-fluid">
-      <div className="row">
-      <div className="col-md-12">
-      <div className="formWidth">
-      <h1>Send Email</h1>
-      <form onSubmit={this.submitClick}>
-        <div className="form-group">
-        <label>
-        Author:
-        </label>
-        <input type="text" className="form-control" value={this.state.author} onChange={this.handleAuthor} required />
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="formWidth">
+                <h1>Send Email</h1>
+                <form  method="post" encType="text/plain" onSubmit={this.submitClick}>
+                  <div className="form-group">
+                    <label>
+                      Author:
+                    </label>
+                    <input type="text" className="form-control" value={this.state.author} onChange={this.handleAuthor} required />
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      Student:
+                    </label>
+                    <select className="form-control custom-select" name="student" onChange={this.handleStudent} required>
+                      <option >{this.state.student}</option>
+                      {this.state.students.map((student, index) => {
+                        return (
+                          <option value={student.id} key={index}>{student.first_name} {student.last_name}</option>
+                        )
+                      })
+                      }
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      Subject:
+                    </label>
+                    <input type="text" className="form-control" name="subject" value={this.state.subject} onChange={this.handleSubject} required/>
+                    <label>
+                      To:
+                    </label>
+                    <input type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleEmail} required/>
+                    <label>
+                      Message
+                    </label>
+                    <input type="text" className="form-control" name="message"  value={this.state.message} onChange={this.handleMessage} required/>
+                  </div>
+    
+                  <div className="alignright2">
+                    <input type="submit" className="btn search-btn" value="Email parent" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="form-group">
-        <label>
-        Student:
-        </label>
-        <select className="form-control custom-select" onChange={this.handleStudent} required>
-          <option defaultValue >Select Student</option>
-          {this.state.students.map((student, index) => {
-            return (
-              <option value={student.id} key={index}>{student.first_name} {student.last_name}</option>
-              )
-            })
-          }
-        </select>
-        </div>
-        <div className="form-group">
-        <label>
-          Subject:
-        </label>
-        <label>
-          To:
-        </label>
-        <input type="text" className="form-control" value="email" required/>
-        <label>
-          Message
-        </label>
-        <input type="text" className="form-control" value={this.state.log} onChange={this.handleLog} required/>
-        </div>
-      </form>
-      <div className="alignright2">
-      <form action={this.state.action} method="post" encType="text/plain">
-      <input type="submit" className="btn search-btn" value="Email parent" />
-      </form>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
       </div>
     );
   }
