@@ -57,7 +57,7 @@ export default class NavTop extends React.Component {
               <input className="student-search" type="text" placeholder="&nbsp;Search Student"
                 value={this.state.searchInput}
                 onKeyPress={this.handleSubmit}
-                onChange={this.handleSearchChange} />
+                onChange={this.handleSearchChange} />&nbsp;
                 <button className="btn search-btn" onClick={this.handleSubmit} >Find</button>
             </li>
           </ul>
