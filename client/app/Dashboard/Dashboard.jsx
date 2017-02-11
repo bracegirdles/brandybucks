@@ -65,6 +65,10 @@ class Dashboard extends React.Component {
         {
           name: 'Settings',
           endpoint: '/settings'
+        },
+        {
+          name: 'message',
+          endpoint: '/message'
         }
       ]
     } else {
