@@ -18,8 +18,8 @@ export default class NavTop extends React.Component {
   // ----------------------------------------------
   capitalizeName(name) {
     return name.split(' ')
-               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-               .join(' ');
+     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+     .join(' ');
   }
 
   // ----------------------------------------------
@@ -29,10 +29,12 @@ export default class NavTop extends React.Component {
     this.setState({
       searchInput: e.target.value
     });
+    this.props.searchStudent(e);
+
   }
 
   handleSubmit(e) {
-    let queryName = this.capitalizeName(name);
+    let queryName = this.capitalizeName(e);
     this.props.searchStudent(queryName);
     this.setState({
       searchInput: ''
@@ -56,7 +58,6 @@ export default class NavTop extends React.Component {
             <li className="nav-item">
               <input className="student-search" type="text" placeholder="&nbsp;Search Student"
                 value={this.state.searchInput}
-                onKeyPress={this.handleSubmit}
                 onChange={this.handleSearchChange} />&nbsp;
                 <button className="btn search-btn" onClick={this.handleSubmit} >Find</button>
             </li>

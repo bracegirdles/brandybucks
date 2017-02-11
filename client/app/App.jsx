@@ -14,11 +14,13 @@ class App extends React.Component {
       studentObj: '',
       status: '',
       students: [],
-      sideBarLinks: []
+      sideBarLinks: [],
+      searchInput: ''
     };
 
     this.handleClickedStudent = this.handleClickedStudent.bind(this);
     this.handleSideBarLinks = this.handleSideBarLinks.bind(this);
+    this.handleSearchStudent = this.handleSearchStudent.bind(this);
   }
 
   // ----------------------------------------------
@@ -69,11 +71,15 @@ class App extends React.Component {
   }
 
   handleSearchStudent(e) {
-    this.setState({
-      students: getSearchStudents(e)
+    getSearchStudents(e).then((resp) => {
+      this.setState({
+        students: resp.data.sort(compareLastName)
+      });
+    }).catch((err) => {
+      console.log(err);
     });
-    console.log('searching students');
   }
+
 
   render () {
     var childrenWithProps = React.cloneElement(this.props.children, {
@@ -85,12 +91,14 @@ class App extends React.Component {
       handleSideBarLinks: this.handleSideBarLinks,
       sideBarLinks: this.state.sideBarLinks
       handleSearchStudent: this.handleSearchStudent
+      handleSideBarLinks: this.handleSideBarLinks
     });
 
     return (
       <div>
         <Nav studentObj={this.state.studentObj}
-             sideBarLinks={this.state.sideBarLinks} />
+             sideBarLinks={this.state.sideBarLinks}
+             handleSearchStudent={this.handleSearchStudent}/>
         {childrenWithProps}
       </div>
     );

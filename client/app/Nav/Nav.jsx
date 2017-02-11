@@ -11,7 +11,8 @@ class Nav extends React.Component {
 
     this.state = {
       studentName: '',
-      studentPic: '../llama.png'
+      studentPic: '../llama.png',
+      searchInput: ''
     };
 
     //binding all the method to this context before pass down to components.
@@ -32,22 +33,8 @@ class Nav extends React.Component {
   // ----------------------------------------------
   // Axios calls
   // ----------------------------------------------
-  searchStudent (name) {
-    let context = this;
-    getStudentByName(name)
-    .then((resp) => {
-      if (typeof resp.data === 'string') {
-      } else {
-        context.setState({
-          studentName: resp.data.first_name + ' ' + resp.data.last_name,
-          studentPic: resp.data.pic,
-        });
-        this.props.handleSearchInputChange(resp.data.id);
-      }
-    })
-    .catch((err) => {
-      console.log('sorry could not get student');
-    })
+  searchStudent (e) {
+    this.props.handleSearchStudent(e.target.value);
   };
 
 
