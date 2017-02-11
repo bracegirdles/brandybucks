@@ -17,6 +17,7 @@ class Nav extends React.Component {
 
     //binding all the method to this context before pass down to components.
     this.searchStudent = this.searchStudent.bind(this);
+    this.findStudent = this.findStudent.bind(this);
     this.logOut = this.logOut.bind(this);
   };
 
@@ -33,9 +34,14 @@ class Nav extends React.Component {
   // ----------------------------------------------
   // Axios calls
   // ----------------------------------------------
-  searchStudent (e) {
+  searchStudent(e) {
     this.props.handleSearchStudent(e.target.value);
   };
+
+  findStudent(e) {
+    console.log(e);
+    this.props.handleClickedStudent(e);
+  }
 
 
   logOut() {
@@ -51,9 +57,18 @@ class Nav extends React.Component {
   render () {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
-        <NavTop logOut={this.logOut} searchStudent={this.searchStudent}/>
-        <NavSide list={this.props.sideBarLinks}
-                 />
+        <NavTop
+          logOut={this.logOut}
+          searchStudent={this.searchStudent}
+          findStudent={this.findStudent}
+          choosePic={this.choosePic}
+          chooseName={this.chooseName}
+        />
+        <NavSide
+          choosePic={this.choosePic}
+          chooseName={this.chooseName}
+          list={this.props.sideBarLinks}
+        />
       </div>
     );
   }

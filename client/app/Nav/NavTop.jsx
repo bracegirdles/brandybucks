@@ -33,9 +33,9 @@ export default class NavTop extends React.Component {
 
   }
 
-  handleSubmit(e) {
-    let queryName = this.capitalizeName(e);
-    this.props.searchStudent(queryName);
+  handleSubmit() {
+    console.log(this.state.searchInput);
+    this.props.findStudent(this.state.searchInput);
     this.setState({
       searchInput: ''
     })

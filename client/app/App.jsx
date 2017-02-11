@@ -15,7 +15,8 @@ class App extends React.Component {
       status: '',
       students: [],
       sideBarLinks: [],
-      searchInput: ''
+      searchInput: '',
+      userName: ''
     };
 
     this.handleClickedStudent = this.handleClickedStudent.bind(this);
@@ -30,7 +31,8 @@ class App extends React.Component {
     if (this.state.status === '') {
       getUserStatus().then(session => {
         this.setState({
-          status: session.data.status
+          status: session.data.status,
+          userName: session.data.user.first_name + ' ' + session.data.user.last_name
         });
       })
     }
@@ -68,6 +70,7 @@ class App extends React.Component {
     });
     browserHistory.push('/student');
     console.log("student clicked", this.state.studentObj);
+    console.log("current user is ", this.state.userName);
   }
 
   handleSearchStudent(e) {
@@ -89,16 +92,18 @@ class App extends React.Component {
       students: this.state.students,
       handleClickedStudent: this.handleClickedStudent,
       handleSideBarLinks: this.handleSideBarLinks,
-      sideBarLinks: this.state.sideBarLinks
-      handleSearchStudent: this.handleSearchStudent
-      handleSideBarLinks: this.handleSideBarLinks
+      sideBarLinks: this.state.sideBarLinks,
+      handleSearchStudent: this.handleSearchStudent,
+      handleSideBarLinks: this.handleSideBarLinks,
+      userName: this.state.userName,
     });
 
     return (
       <div>
         <Nav studentObj={this.state.studentObj}
              sideBarLinks={this.state.sideBarLinks}
-             handleSearchStudent={this.handleSearchStudent}/>
+             handleSearchStudent={this.handleSearchStudent}
+             handleClickedStudent={this.handleClickedStudent} />
         {childrenWithProps}
       </div>
     );

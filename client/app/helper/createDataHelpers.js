@@ -59,6 +59,7 @@ var createData = {
           var newStudent = new Student ({
             first_name: req.first_name,
             last_name: req.last_name,
+            full_name: req.first_name + ' ' + req.last_name,
             grade: req.grade,
             IEP: req.IEP,
             pic: req.pic,
