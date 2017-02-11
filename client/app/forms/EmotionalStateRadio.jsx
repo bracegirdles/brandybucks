@@ -19,7 +19,7 @@ const EmotionalStateRadio = function({ name, value, hexCode, checked, handleOpti
 
 EmotionalStateRadio.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   hexCode: PropTypes.object.isRequired,
   checked: PropTypes.bool.isRequired,
 }
