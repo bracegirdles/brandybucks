@@ -17,5 +17,9 @@ router.get('/logs/getAll', controller.logs.get);
 
 router.get('/message/getParentEmail', controller.message.getParentEmail);
 
+router.get('/emotionalStateData', controller.emotionalState.get);
+
+router.get('/emotionalStateData', controller.emotionalState.post);
+
 module.exports = router;
 
