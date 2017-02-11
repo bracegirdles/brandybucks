@@ -25,7 +25,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Dashboard} />
     <Route path="createlog" component={CreateLog} />
-    <Route path="email" component={SendEmail} />
+    <Route path="message" component={SendEmail} />
     <Route path="goals" component={Goals} />
     <Route path="iep" component={IEP} />
     <Route path="meetingnotes" component={MeetingNotes} />
