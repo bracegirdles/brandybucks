@@ -23,8 +23,9 @@ module.exports = {
                 if (match) {
 
                   // set the permissions level
-                  req.session.level = 'loggedIn'
+                  req.session.level = 'loggedIn';
                   req.session.status = status;
+                  req.session.user = user
                   res.redirect('/')
 
                 } else {
@@ -50,6 +51,7 @@ module.exports = {
                   // set the permissions level
                   req.session.level = 'loggedIn'
                   req.session.status = status;
+                  req.session.user = user;
                   // localStorage.setItem('status', user.)
                   res.redirect('/')
 

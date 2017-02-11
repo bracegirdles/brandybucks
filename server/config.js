@@ -72,6 +72,7 @@ bookshelf.knex.schema.hasTable('students').then(function(exists) {
       student.increments('id').primary();
       student.string('first_name', 100);
       student.string('last_name', 100);
+      student.string('full_name', 200);
       student.string('grade', 3);
       student.string('IEP', 100);
       student.string('pic', 100);
