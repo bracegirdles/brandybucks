@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {getAllStudents} from '../helper/auth.js'
 import {addLog} from '../helper/auth.js';
-import EmotionalStateOption from './EmotionalStateOption.jsx';
+import EmotionalStateRadioGroup from './EmotionalStateRadioGroup.jsx';
 import EmotionalStateRadio from './EmotionalStateRadio.jsx';
 import emotionalSpectrum from './emotionalSpectrumData.js';
 import css from '../../css/forms.css';
@@ -71,19 +71,19 @@ class EmotionalStateForm extends React.Component {
                 </label>
               </div>
               <h3>This morning, I'm feeling:</h3>  
-              <EmotionalStateOption name="morningMood"
+              <EmotionalStateRadioGroup name="morningMood"
                                     value={this.state.morningMood}
                                     handleOptionChange={this.handleOptionChange} 
                                     emotionalSpectrum={emotionalSpectrum}
               />
               <h3>At lunch time today, I'm feeling:</h3>
-              <EmotionalStateOption name="noonMood"
+              <EmotionalStateRadioGroup name="noonMood"
                                     value={this.state.noonMood}
                                     handleOptionChange={this.handleOptionChange} 
                                     emotionalSpectrum={emotionalSpectrum}
               />
               <h3>After school today, I'm feeling:</h3>
-              <EmotionalStateOption name="endMood"
+              <EmotionalStateRadioGroup name="endMood"
                                     value={this.state.endMood}
                                     handleOptionChange={this.handleOptionChange} 
                                     emotionalSpectrum={emotionalSpectrum}
