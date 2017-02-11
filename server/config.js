@@ -165,14 +165,14 @@ bookshelf.knex.schema.hasTable('emotional_state_data').then(function(exists) {
 
       // Foreign Keys
       emotionalStateEntry.integer('student_id').unsigned();
-      emotionalStateEntry.foreign('student_id').references('students.id');
+      emotionalStateEntry.foreign('student_id').references('id').inTable('students');
       emotionalStateEntry.integer('teacher_id').unsigned();
-      emotionalStateEntry.foreign('teacher_id').references('teacher.id');
+      emotionalStateEntry.foreign('teacher_id').references('id').inTable('teachers');
 
       // Time Stamp
       emotionalStateEntry.timestamps();
     }).then(function (table) {
-    console.log('Created Table EMOTIONAL_STATE_DATA', table);
+    console.log('Created Table EMOTIONAL_STATE_DATA');
     });
   }
 });
@@ -211,14 +211,14 @@ bookshelf.knex.schema.hasTable('interest_and_engagement_data').then(function(exi
 
       // Foreign Keys
       interestEngagementEntry.integer('student_id').unsigned();
-      interestEngagementEntry.foreign('student_id').references('students.id');
+      interestEngagementEntry.foreign('student_id').references('id').inTable('students');
       interestEngagementEntry.integer('teacher_id').unsigned();
-      interestEngagementEntry.foreign('teacher_id').references('teacher.id');
+      interestEngagementEntry.foreign('teacher_id').references('id').inTable('teachers');
 
       // Time Stamp
       interestEngagementEntry.timestamps();
     }).then(function (table) {
-    console.log('Created Table INTEREST_AND_ENGAGEMENT_DATA', table);
+    console.log('Created Table INTEREST_AND_ENGAGEMENT_DATA');
     });
   }
 });
@@ -253,14 +253,14 @@ bookshelf.knex.schema.hasTable('interpersonal_skills_data').then(function(exists
 
       // Foreign Keys
       interpersonalSkillsEntry.integer('student_id').unsigned();
-      interpersonalSkillsEntry.foreign('student_id').references('students.id');
+      interpersonalSkillsEntry.foreign('student_id').references('id').inTable('students');
       interpersonalSkillsEntry.integer('teacher_id').unsigned();
-      interpersonalSkillsEntry.foreign('teacher_id').references('teacher.id');
+      interpersonalSkillsEntry.foreign('teacher_id').references('id').inTable('teachers');
 
       // Time Stamp
       interpersonalSkillsEntry.timestamps();
     }).then(function (table) {
-    console.log('Created Table INTERPERSONAL_SKILLS_DATA', table);
+    console.log('Created Table INTERPERSONAL_SKILLS_DATA');
     });
   }
 });
@@ -281,14 +281,13 @@ bookshelf.knex.schema.hasTable('attendance_data').then(function(exists) {
 
       // Foreign Keys
       attendanceEntry.integer('student_id').unsigned();
-      attendanceEntry.foreign('student_id').references('students.id');
+      attendanceEntry.foreign('student_id').references('id').inTable('students');
       attendanceEntry.integer('teacher_id').unsigned();
-      attendanceEntry.foreign('teacher_id').references('teacher.id');
-
+      attendanceEntry.foreign('teacher_id').references('id').inTable('teachers');
       // Time Stamp
       attendanceEntry.timestamps();
     }).then(function (table) {
-    console.log('Created Table ATTENDANCE_DATA', table);
+    console.log('Created Table ATTENDANCE_DATA');
     });
   }
 });
@@ -317,14 +316,14 @@ bookshelf.knex.schema.hasTable('maturity_data').then(function(exists) {
 
       // Foreign Keys
       maturityEntry.integer('student_id').unsigned();
-      maturityEntry.foreign('student_id').references('students.id');
+      maturityEntry.foreign('student_id').references('id').inTable('students');
       maturityEntry.integer('teacher_id').unsigned();
-      maturityEntry.foreign('teacher_id').references('teacher.id');
+      maturityEntry.foreign('teacher_id').references('id').inTable('teachers');
 
       // Time Stamp
       maturityEntry.timestamps();
     }).then(function (table) {
-    console.log('Created Table MATURITY_DATA', table);
+    console.log('Created Table MATURITY_DATA');
     });
   }
 });
