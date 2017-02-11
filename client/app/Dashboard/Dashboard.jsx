@@ -15,12 +15,16 @@ class Dashboard extends React.Component {
     this.selectDesc = this.selectDesc.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.handleSideBarLinks([])
+  }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.status !== this.props.status) {
-      var sideBarLinks = this.selectSideBarLinks(nextProps.status)
+    if (nextProps.sideBarLinks.length === 0) {
       this.props.handleSideBarLinks(this.selectSideBarLinks(nextProps.status));
     }
+
+
   }
   // ----------------------------------------------
   // Event Handlers
@@ -67,7 +71,7 @@ class Dashboard extends React.Component {
           endpoint: '/settings'
         },
         {
-          name: 'message',
+          name: 'Message',
           endpoint: '/message'
         }
       ]
@@ -88,6 +92,10 @@ class Dashboard extends React.Component {
         {
           name: 'Settings',
           endpoint: '/settings'
+        },
+        {
+          name: 'Message',
+          endpoint: '/message'
         }
       ]
     }
@@ -97,15 +105,15 @@ class Dashboard extends React.Component {
     let panels = null;
     if (this.props.status === 'teacher') {
       panels = [
-        <Panel key={1} hover={this.handleHover} title="Students" icon="graduation-cap" />,
-        <Panel key={2} hover={this.handleHover} title="Calendar" icon="calendar-check-o"/>,
-        <Panel key={3} hover={this.handleHover} title="Settings" icon="cog"/>
+        <Panel key={1} inDashboard={true} hover={this.handleHover} title="Students" icon="graduation-cap" />,
+        <Panel key={2} inDashboard={true} hover={this.handleHover} title="Calendar" icon="calendar-check-o"/>,
+        <Panel key={3} inDashboard={true} hover={this.handleHover} title="Settings" icon="cog"/>
       ]
     } else {
       panels = [
-        <Panel key={1} hover={this.handleHover} title="Children" icon="child" />,
-        <Panel key={2} hover={this.handleHover} title="Schedule" icon="calendar-check-o"/>,
-        <Panel key={3} hover={this.handleHover} title="Settings" icon="cog"/>
+        <Panel key={1} inDashboard={true} hover={this.handleHover} title="Children" icon="child" />,
+        <Panel key={2} inDashboard={true} hover={this.handleHover} title="Schedule" icon="calendar-check-o"/>,
+        <Panel key={3} inDashboard={true} hover={this.handleHover} title="Settings" icon="cog"/>
       ]
     }
 
