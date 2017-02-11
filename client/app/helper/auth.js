@@ -44,6 +44,14 @@ exports.addLog = (log) => {
   });
 };
 
+exports.addMessage = (message) => {
+  return axios({
+    method: 'POST',
+    url:'api/message',
+    data: message
+  })
+};
+
 exports.logout = () => {
   return axios.get('authApi/logout')
 };
