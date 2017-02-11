@@ -17,8 +17,6 @@ class Nav extends React.Component {
     //binding all the method to this context before pass down to components.
     this.searchStudent = this.searchStudent.bind(this);
     this.logOut = this.logOut.bind(this);
-    this.choosePic = this.choosePic.bind(this);
-    this.chooseName = this.chooseName.bind(this);
   };
 
   // ----------------------------------------------
@@ -63,32 +61,11 @@ class Nav extends React.Component {
     });
   };
 
-  // ----------------------------------------------
-  // Helper methods
-  // ----------------------------------------------
-  choosePic() {
-    if (this.props.studentObj === '') {
-      return this.state.studentPic;
-    } else {
-      return this.props.studentObj.pic;
-    }
-  };
-
-  chooseName() {
-    if (this.props.studentObj === '') {
-      return this.state.studentName;
-    } else {
-      return `${this.props.studentObj.first_name} ${this.props.studentObj.last_name}`;
-    }
-  };
-
   render () {
     return(
       <div className="navbar navbar-inverse navbar-fixed-top">
         <NavTop logOut={this.logOut} searchStudent={this.searchStudent}/>
-        <NavSide choosePic={this.choosePic}
-                 chooseName={this.chooseName}
-                 list={this.props.sideBarLinks}
+        <NavSide list={this.props.sideBarLinks}
                  />
       </div>
     );
