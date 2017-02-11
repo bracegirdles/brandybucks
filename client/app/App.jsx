@@ -28,6 +28,7 @@ class App extends React.Component {
   // ----------------------------------------------
   // Component Lifecycle Functions
   // ----------------------------------------------
+
   componentDidMount() {
     if (this.state.status === '') {
       getUserStatus().then(session => {
@@ -38,22 +39,25 @@ class App extends React.Component {
           user_id: user.id,
         });
 
-        if (this.state.status === 'teacher') {
-          getAllStudents(this.state.user_id)
-          .then(res => {
-            this.setState({
-              students: res.data.sort(compareLastName)
-            });
-          })
-        }
+        if (this.state.searchInput.length === 0) {
 
-        if (this.state.status === 'parent') {
-          getChildren(this.state.user_id)
-          .then(res => {
-            this.setState({
-              students: res.data.sort(compareLastName)
-            });
-          });
+            if (this.state.status === 'teacher') {
+              getAllStudents(this.state.user_id)
+              .then(res => {
+                this.setState({
+                  students: res.data.sort(compareLastName)
+                });
+              })
+            }
+
+            if (this.state.status === 'parent') {
+              getChildren(this.state.user_id)
+              .then(res => {
+                this.setState({
+                  students: res.data.sort(compareLastName)
+                });
+              });
+            }
         }
 
       });
@@ -88,7 +92,7 @@ class App extends React.Component {
   }
 
   handleSearchStudent(e) {
-    getSearchStudents(e).then((resp) => {
+    getSearchStudents(e, this.state.user_id).then((resp) => {
       this.setState({
         students: resp.data.sort(compareLastName)
       });
