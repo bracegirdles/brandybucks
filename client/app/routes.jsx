@@ -40,6 +40,7 @@ export default (
       <Route path="calendar" component={Calendar} />
       */ }
     <Route path="settings" component={Settings} />
+    <Route path="message" component={SendEmail} />
 
 
     { /* Routes for the Student Profile     */}
@@ -65,7 +66,6 @@ export default (
 
     <Route path="statistics" component={Charts} />
     <Route path="createlog" component={CreateLog} />
-    <Route path="message" component={SendEmail} />
     <Route path="goals" component={Goals} />
     <Route path="iep" component={IEP} />
     <Route path="meetingnotes" component={MeetingNotes} />

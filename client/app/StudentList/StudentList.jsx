@@ -38,6 +38,10 @@ class StudentList extends React.Component {
         {
           name: 'Settings',
           endpoint: '/settings'
+        },
+        {
+          name: 'Message',
+          endpoint: '/message'
         }
       ]
     } else {
@@ -57,6 +61,10 @@ class StudentList extends React.Component {
         {
           name: 'Settings',
           endpoint: '/settings'
+        },
+        {
+          name: 'Message',
+          endpoint: '/message'
         }
       ]
     }

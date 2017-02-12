@@ -1,23 +1,80 @@
 import React from 'react';
 import axios from 'axios';
-import {getAllStudents} from './helper/auth.js'
-import {addLog} from './helper/auth.js';
-// import controller from '../../server/controllers/dataControllers.js';
-// var message = require('../../server/controllers/dataControllers.js');
-// var message: require('../../server/controllers/dataControllers.js');
+import {getAllStudents} from './helper/auth'
 
-module.exports = React.createClass({
-  getInitialState: function() {
-    return {
+class SendEmail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       students: [],
       author: '',
       email: '',
       subject: '',
       message: '',
       student: 'select student'
+    };
+  }
 
+  componentWillUnmount() {
+    this.props.handleSideBarLinks([])
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.sideBarLinks.length === 0) {
+      this.props.handleSideBarLinks(this.selectSideBarLinks(nextProps.status));
     }
-  },
+  }
+
+  selectSideBarLinks(status) {
+    if (status === 'teacher') {
+      return [
+        {
+          name: 'Home',
+          endpoint: '/'
+        },
+        {
+          name: 'Students',
+          endpoint: '/students'
+        },
+        {
+          name: 'Calendar',
+          endpoint: '/calendar'
+        },
+        {
+          name: 'Settings',
+          endpoint: '/settings'
+        },
+        {
+          name: 'Message',
+          endpoint: '/message'
+        }
+      ]
+    } else {
+      return [
+        {
+          name: 'Home',
+          endpoint: '/'
+        },
+        {
+          name: 'Children',
+          endpoint: '/children'
+        },
+        {
+          name: 'Schedule',
+          endpoint: '/schedule'
+        },
+        {
+          name: 'Settings',
+          endpoint: '/settings'
+        },
+        {
+          name: 'Message',
+          endpoint: '/message'
+        }
+      ]
+    }
+  }
 
   componentWillMount() {
     getAllStudents()
@@ -29,35 +86,37 @@ module.exports = React.createClass({
     .catch((err) => {
       console.log(err);
     })
-  },
+  }
 
   handleAuthor(e) {
     this.setState({
       author: e.target.value,
     });
-  },
+  }
+
   handleEmail(e) {
     this.setState({
       email: e.target.value,
     });
-  },
+  }
+
   handleSubject(e) {
     this.setState({
       subject: e.target.value,
     });
-  },
+  }
 
   handleStudent(e) {
     this.setState({
       student: e.target.value,
     });
-  },
+  }
 
   handleMessage(e) {
     this.setState({
       message: e.target.value,
     });
-  },
+  }
 
   submitClick(e) {
     e.preventDefault();
@@ -83,9 +142,9 @@ module.exports = React.createClass({
       url: '/message/sendEmail',
       data: log
     })
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div id="wrapper">
         <div className="container-fluid">
@@ -138,6 +197,8 @@ module.exports = React.createClass({
           </div>
         </div>
       </div>
-    );
+    )
   }
-})
+}
+
+export default SendEmail;

@@ -174,18 +174,6 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
       })
     },
 
-    sendEmail: function(req, res) {
-      var newEmail = new Message({
-        teacher_id: req.body.teacher_id,
-        student_id: req.body.student_id,
-        text: req.body.text
-      });
-
-      newEmail.save()
-      .then(function(){
-        res.send('message saved')
-      })
-    }
   },
 
   emotionalState: {
