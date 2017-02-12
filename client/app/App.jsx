@@ -114,6 +114,7 @@ class App extends React.Component {
       handleSearchStudent: this.handleSearchStudent,
       handleSideBarLinks: this.handleSideBarLinks,
       userName: this.state.userName,
+      user_id: this.state.user_id,
     });
 
     return (

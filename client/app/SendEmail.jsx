@@ -8,12 +8,18 @@ class SendEmail extends React.Component {
 
     this.state = {
       students: [],
-      author: '',
+      author: this.props.userName,
       email: '',
       subject: '',
       message: '',
-      student: 'select student'
+      student: ''
     };
+    this.handleAuthor = this.handleAuthor.bind(this);
+    this.handleStudent = this.handleStudent.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handleSubject = this.handleSubject.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
+    this.submitClick = this.submitClick.bind(this);
   }
 
   componentWillUnmount() {
@@ -77,7 +83,7 @@ class SendEmail extends React.Component {
   }
 
   componentWillMount() {
-    getAllStudents()
+    getAllStudents(this.props.user_id)
     .then((resp) => {
       this.setState({
         students: resp.data,
@@ -107,9 +113,11 @@ class SendEmail extends React.Component {
   }
 
   handleStudent(e) {
+    console.log(e.target)
     this.setState({
       student: e.target.value,
     });
+    console.log('studen state is ', this.state.student)
   }
 
   handleMessage(e) {
@@ -164,7 +172,7 @@ class SendEmail extends React.Component {
                       Student:
                     </label>
                     <select className="form-control custom-select" name="student" onChange={this.handleStudent} required>
-                      <option >{this.state.student}</option>
+                      <option defaultValue>Select Student</option>
                       {this.state.students.map((student, index) => {
                         return (
                           <option value={student.id} key={index}>{student.first_name} {student.last_name}</option>
