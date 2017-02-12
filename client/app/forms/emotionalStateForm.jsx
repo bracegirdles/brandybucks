@@ -15,7 +15,7 @@ class EmotionalStateForm extends React.Component {
       morningMood: 4,
       noonMood: 4,
       endMood: 4,
-      teacherNotes: null,
+      teacherNotes: null
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -38,7 +38,6 @@ class EmotionalStateForm extends React.Component {
   handleFormSubmit(formSubmitEvent) {
     formSubmitEvent.preventDefault();
     
-    //Construct object based on all state variables
     const emotionalState = {
       date: this.state.date,
       morning_mood_score: this.state.morningMood,
@@ -48,16 +47,12 @@ class EmotionalStateForm extends React.Component {
       student_id: this.props.student.student_id,
       teacher_id: this.props.student.teacher_id
     }
-
-    console.log(emotionalState);
-
-    //call helper function with above object as argument
-    //
-    console.log('You have selected: ', this.state.morningMood, this.state.noonMood, ' and ', this.state.endMood, ' and ', this.state.date);
+    
+    addEmotionalStateData(emotionalState);
+    console.log('You have selected: ', this.state.morningMood, this.state.noonMood, this.state.endMood, ' and ', this.state.date);
   }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="container">
       <h1>How are you feeling?</h1>
