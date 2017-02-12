@@ -196,8 +196,7 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
         .then(function(data){
           res.send(data);
         })
-      }
-    },
+      },
 
     // getOne: function(req, res) {
     //   knex.select('*')
@@ -231,7 +230,7 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
         res.send('Emotional state update saved in database.')
       });
     }
-  }
+  },
 
   interestAndEngagement: {
     getAll: function(req, res) {
@@ -241,7 +240,6 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
         .then(function(data){
           res.send(data);
         })
-      }
     },
 
     // getOne: function(req, res) {
@@ -264,25 +262,25 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
       });
 
       var newInterestAndEngagement = new InterestAndEngagement({
-        date: req.body.
-        r_performance_score: req.body.
-        r_participation_score: req.body.
-        r_enjoyment_score: req.body.
-        r_interest_score: req.body.
-        r_repeatability_score: req.body.
-        w_reading_performance_score: req.body.
-        w_participation_score: req.body.
-        w_enjoyment_score: req.body.
-        w_interest_score: req.body.
-        w_repeatability_score: req.body.
-        m_reading_performance_score: req.body.
-        m_participation_score: req.body.
-        m_enjoyment_score: req.body.
-        m_interest_score: req.body.
-        m_repeatability_score: req.body.
-        teacher_notes: req.body.
-        student_id: req.body.
-        teacher_id: req.body.
+        date: req.body,
+        r_performance_score: req.body,
+        r_participation_score: req.body,
+        r_enjoyment_score: req.body,
+        r_interest_score: req.body,
+        r_repeatability_score: req.body,
+        w_reading_performance_score: req.body,
+        w_participation_score: req.body,
+        w_enjoyment_score: req.body,
+        w_interest_score: req.body,
+        w_repeatability_score: req.body,
+        m_reading_performance_score: req.body,
+        m_participation_score: req.body,
+        m_enjoyment_score: req.body,
+        m_interest_score: req.body,
+        m_repeatability_score: req.body,
+        teacher_notes: req.body,
+        student_id: req.body,
+        teacher_id: req.body,
       })
 
       newInterestAndEngagement.save().then(function() {
@@ -299,7 +297,6 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
         .then(function(data){
           res.send(data);
         })
-      }
     },
 
     // getOne: function(req, res) {
@@ -322,19 +319,19 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
       });
 
       var newInterpersonalSkills = new InterpersonalSkills({
-        date: req.body.
-        coop_listen_to_instruction_score: req.body.
-        one_on_one_cheering_up_others_score: req.body.
-        one_on_one_empowering_others_score: req.body.
-        one_on_one_helping_others_score: req.body.
-        one_on_one_sharing_score: req.body.
-        cd_behavior_score: req.body.
-        cd_morale_score: req.body.
-        coop_notes: req.body.
-        one_on_one_notes: req.body.
-        cd_notes: req.body.
-        student_id: req.body.
-        teacher_id: req.body.
+        date: req.body,
+        coop_listen_to_instruction_score: req.body,
+        one_on_one_cheering_up_others_score: req.body,
+        one_on_one_empowering_others_score: req.body,
+        one_on_one_helping_others_score: req.body,
+        one_on_one_sharing_score: req.body,
+        cd_behavior_score: req.body,
+        cd_morale_score: req.body,
+        coop_notes: req.body,
+        one_on_one_notes: req.body,
+        cd_notes: req.body,
+        student_id: req.body,
+        teacher_id: req.body,
       })
 
       newInterpersonalSkills.save().then(function() {
@@ -351,7 +348,6 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
         .then(function(data){
           res.send(data);
         })
-      }
     },
 
     // getOne: function(req, res) {
@@ -374,12 +370,12 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
       });
 
       var newAttendance = new Attendance({
-        date: req.body.
-        presence: req.body.
-        teacher_notes: req.body.
-        student_id: req.body.
-        teacher_id: req.body.
-      })
+        date: req.body,
+        presence: req.body,
+        teacher_notes: req.body,
+        student_id: req.body,
+        teacher_id: req.body,
+      });
 
       newAttendance.save().then(function() {
         res.send('Attendance update saved in database.')
@@ -395,7 +391,6 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
         .then(function(data){
           res.send(data);
         })
-      }
     },
 
     // getOne: function(req, res) {
@@ -418,17 +413,17 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
       });
 
       var newMaturity = new Maturity({
-        date: req.body.
-        response_general_score: req.body.
-        response_adversity_score: req.body.
-        disability_induced_stress_general_score: req.body.
-        disability_induced_stress_trigger_score: req.body.
-        trigger_response_decision_score: req.body.
-        behavioral_output_score: req.body.
-        general_maturity_notes: req.body.
-        disability_management_notes: req.body.
-        student_id: req.body.
-        teacher_id: req.body.
+        date: req.body,
+        response_general_score: req.body,
+        response_adversity_score: req.body,
+        disability_induced_stress_general_score: req.body,
+        disability_induced_stress_trigger_score: req.body,
+        trigger_response_decision_score: req.body,
+        behavioral_output_score: req.body,
+        general_maturity_notes: req.body,
+        disability_management_notes: req.body,
+        student_id: req.body,
+        teacher_id: req.body,
       })
 
       newMaturity.save().then(function() {
