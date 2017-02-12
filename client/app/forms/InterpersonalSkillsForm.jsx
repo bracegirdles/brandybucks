@@ -12,13 +12,13 @@ class InterpersonalSkillsForm extends React.Component {
     super(props);
     this.state = {
       date: null,
-      coop_listen_to_instruction_score:
-      one_on_one_cheering_up_others_score: 
-      one_on_one_empowering_others_score: 
-      one_on_one_helping_others_score: 
-      one_on_one_sharing_score: 
-      cd_behavior_score: 
-      cd_morale_score: 
+      coop_listen_to_instruction_score: 0,
+      one_on_one_cheering_up_others_score: 0,
+      one_on_one_empowering_others_score: 0,
+      one_on_one_helping_others_score: 0,
+      one_on_one_sharing_score: 0,
+      cd_behavior_score: 0,
+      cd_morale_score: 0,
       coop_notes: null,
       one_on_one_notes: null,
       cd_notes: null

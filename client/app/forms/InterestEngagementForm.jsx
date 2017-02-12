@@ -12,21 +12,21 @@ class InterestEngagementForm extends React.Component {
     super(props);
     this.state = {
       date: null,
-      r_performance_score:
-      r_participation_score:
-      r_enjoyment_score:
-      r_interest_score:
-      r_repeatability_score:
-      w_reading_performance_score:
-      w_participation_score:
-      w_enjoyment_score:
-      w_interest_score:
-      w_repeatability_score:
-      m_reading_performance_score:
-      m_participation_score:
-      m_enjoyment_score:
-      m_interest_score:
-      m_repeatability_score:
+      r_performance_score: 0,
+      r_participation_score: 0,
+      r_enjoyment_score: 0,
+      r_interest_score: 0,
+      r_repeatability_score: 0,
+      w_reading_performance_score: 0,
+      w_participation_score: 0,
+      w_enjoyment_score: 0,
+      w_interest_score: 0,
+      w_repeatability_score: 0,
+      m_reading_performance_score: 0,
+      m_participation_score: 0,
+      m_enjoyment_score: 0,
+      m_interest_score: 0,
+      m_repeatability_score: 0,
       teacherNotes: null
     };
 

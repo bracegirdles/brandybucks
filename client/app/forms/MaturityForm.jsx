@@ -12,12 +12,12 @@ class MaturityForm extends React.Component {
     super(props);
     this.state = {
       date: null,
-      response_general_score:
-      response_adversity_score:
-      disability_induced_stress_general_score:
-      disability_induced_stress_trigger_score:
-      trigger_response_decision_score:
-      behavioral_output_score:
+      response_general_score: 0,
+      response_adversity_score: 0,
+      disability_induced_stress_general_score: 0,
+      disability_induced_stress_trigger_score: 0,
+      trigger_response_decision_score: 0,
+      behavioral_output_score: 0,
       general_maturity_notes: null,
       disability_management_notes: null
     };
