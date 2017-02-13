@@ -5,7 +5,7 @@ import css from '../../css/panel.css';
 const Panel = props => (
   <div className="row">
     <div className={'panel-icon' + (props.inDashboard ? ' top-28' : ' bottom-28')}>
-      <Link to={`/${props.title.toLowerCase()}`}>
+      <Link to={`/${(props.inStudentPage ? 'student/' : '') + props.title.toLowerCase().replace(/\s/g, '')}`}>
         <i onMouseOver={() => { props.hover(props.title.toLowerCase()); }} className={`fa fa-${props.icon} fa-5x`}></i>
         <h1>{props.title}</h1>
       </Link>
