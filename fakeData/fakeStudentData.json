@@ -7,8 +7,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 1
-
+    "teacher_id": 1,
+    "email": "estelle.wade@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
 
   },
   {
@@ -19,7 +25,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 2
+    "teacher_id": 2,
+    "email": "juliette.bond@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
 
   },
   {
@@ -30,7 +43,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 1
+    "teacher_id": 1,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   },
   {
     "id": 4,
@@ -40,7 +60,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 4
+    "teacher_id": 4,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   },
   {
     "id": 5,
@@ -50,7 +77,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 1
+    "teacher_id": 1,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   },
   {
     "id": 6,
@@ -60,7 +94,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 1
+    "teacher_id": 1,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   },
   {
     "id": 7,
@@ -70,7 +111,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 3
+    "teacher_id": 3,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   },
   {
     "id": 8,
@@ -80,7 +128,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 1
+    "teacher_id": 1,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   },
   {
     "id": 9,
@@ -90,7 +145,14 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 1
+    "teacher_id": 1,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   },
   {
     "id": 10,
@@ -100,6 +162,13 @@
     "IEP": "",
     "pic": "http://kingofwallpapers.com/llama/llama-091.jpg",
     "logCount": 0,
-    "teacher_id": 2
+    "teacher_id": 2,
+    "email": "shanna.aimee@gmail.com",
+    "studentID": 2313,
+    "phonenumber": "415-555-555",
+    "address": "984 Telegraph Avenue Berkeley, CA 94704",
+    "teacher": "Jamil Lawrence",
+    "aide": "Sophie Leroi",
+    "parent": "Marcus Phillips"
   }
 ]

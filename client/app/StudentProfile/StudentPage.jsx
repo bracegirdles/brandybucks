@@ -6,7 +6,7 @@ const StudentPage = props => (
   <div className="container-fluid">
     <div className="row">
       <div className="col-md-4">
-        <StudentInfo student={props.student} />
+        <StudentInfo student={props.student} teacher={props.teacher} />
       </div>
       <div className="col-md-8">
         <div className="row">

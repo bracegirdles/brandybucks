@@ -12,7 +12,7 @@ const StudentHeader = props => (
         <h1>{props.student.first_name + ' ' + props.student.last_name}</h1>
       </div>
       <div className="col-md-1 top-2 left-3">
-        <button className="btn btn-primary">Send Email</button>
+        <a href="/message"><button className="btn btn-primary">Send Email</button></a>
       </div>
     </div>
   </div>

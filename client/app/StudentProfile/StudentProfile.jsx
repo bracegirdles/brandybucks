@@ -57,7 +57,8 @@ class StudentProfile extends React.Component {
   render() {
     var childrenWithProps = React.cloneElement(this.props.children, {
       student: this.props.studentObj,
-      status: this.props.status
+      status: this.props.status,
+      teacher: this.props.userName
     });
 
     return (
