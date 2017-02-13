@@ -1,7 +1,11 @@
-import axios from 'axios'
+import axios from 'axios';
 
-exports.getEmotionalStateData = (emotionalStateEntry) => {
-  return axios.get('api/emotionalStateData'); 
+exports.getAllEmotionalStateData = (studentId) => {
+  return axios.get('api/emotionalStateDataGetAll', {
+    params: {
+      student_id: studentId
+    }
+  }); 
 };
 
 exports.getIntersestEngagementData = (interestEngagementEntry) => {
