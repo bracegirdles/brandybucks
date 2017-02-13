@@ -12,7 +12,7 @@ class StudentEntry extends React.Component {
     this.props.handleClickedStudent(this.props.student)
   }
 
-  render() {  
+  render() {
     return (
       <tr onClick={this.handleClick} >
         <td><img src={this.props.student.pic} width="40%" /></td>

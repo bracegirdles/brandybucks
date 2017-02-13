@@ -87,8 +87,6 @@ class App extends React.Component {
       studentObj: student
     });
     browserHistory.push('/student');
-    console.log("student clicked", this.state.studentObj);
-    console.log("current user is ", this.state.userName);
   }
 
   handleSearchStudent(e) {

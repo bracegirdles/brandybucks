@@ -6,7 +6,7 @@ const StudentHeader = props => (
   <div className="container-fluid">
     <div className="row">
       <div className="col-md-2">
-        <img src="/"/>
+        <img src={props.student.pic} width="70%"/>
       </div>
       <div className="col-md-8">
         <h1>{props.student.first_name + ' ' + props.student.last_name}</h1>
