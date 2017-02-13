@@ -11,6 +11,8 @@ router.get('/students/getChildren', controller.studentInfo.getChildren);
 
 router.get('/students/getSearch', controller.query.getSearch);
 
+router.get('/students/getName', controller.studentInfo.getName);
+
 router.post('/students', controller.studentInfo.post);
 
 router.post('/logs', controller.logs.post);
@@ -18,6 +20,8 @@ router.post('/logs', controller.logs.post);
 router.get('/logs/getAll', controller.logs.get);
 
 router.get('/message/getParentEmail', controller.message.getParentEmail);
+
+router.get('/message/getStudentEmail', controller.message.getStudentEmail);
 
 // router.get('/emotionalStateData', controller.emotionalState.get);
 

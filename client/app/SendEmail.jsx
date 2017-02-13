@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {getAllStudents} from './helper/auth'
+import {getAllStudents, getParentEmail, getStudentName, getStudentEmail} from './helper/auth';
 
 class SendEmail extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class SendEmail extends React.Component {
       email: '',
       subject: '',
       message: '',
-      student: ''
+      student: 'Select Student'
     };
     this.handleAuthor = this.handleAuthor.bind(this);
     this.handleStudent = this.handleStudent.bind(this);
@@ -101,9 +101,15 @@ class SendEmail extends React.Component {
   }
 
   handleEmail(e) {
-    this.setState({
-      email: e.target.value,
-    });
+    if (this.state.email.length > 0) {
+      this.setState({
+        email: this.state.email + ',' + e.target.value
+      })
+    } else {
+      this.setState({
+        email: e.target.value,
+      });
+    }
   }
 
   handleSubject(e) {
@@ -113,11 +119,23 @@ class SendEmail extends React.Component {
   }
 
   handleStudent(e) {
-    console.log(e.target)
-    this.setState({
-      student: e.target.value,
+    var id = e.target.value;
+    getStudentName(id).then((resp) => {
+      this.setState({
+        student: resp.data[0].full_name
+      })
+      getParentEmail(id).then((resp) => {
+        const email = {target: {
+          value: resp.data[0].email
+        }};
+        this.handleEmail(email);
+      }).catch((err) => {
+        console.log(err);
+      });
     });
-    console.log('studen state is ', this.state.student)
+
+
+
   }
 
   handleMessage(e) {
@@ -141,7 +159,7 @@ class SendEmail extends React.Component {
       message: '',
       email: '',
       subject: '',
-      student: 'select student',
+      student: 'Select Student',
       students: []
 
     });
@@ -171,8 +189,8 @@ class SendEmail extends React.Component {
                     <label>
                       Student:
                     </label>
-                    <select className="form-control custom-select" name="student" onChange={this.handleStudent} required>
-                      <option defaultValue>Select Student</option>
+                    <select className="form-control custom-select" name="student" value={this.state.student} onChange={this.handleStudent} required>
+                      <option>{this.state.student}</option>
                       {this.state.students.map((student, index) => {
                         return (
                           <option value={student.id} key={index}>{student.first_name} {student.last_name}</option>

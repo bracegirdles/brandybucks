@@ -28,6 +28,14 @@ exports.getStudentByName = (name) => {
   })
 };
 
+exports.getStudentName = (student_id) => {
+  return axios.get('api/students/getName', {
+    params: {
+      id: student_id,
+    }
+  })
+};
+
 exports.getSearchStudents = (string, user_id, status) => {
   return axios.get('api/students/getSearch', {
     params: {
@@ -70,8 +78,20 @@ exports.logout = () => {
   return axios.get('authApi/logout')
 };
 
-exports.getParentEmail = () => {
-  return axios.get('api/message/getParentEmail')
+exports.getStudentEmail = (student_id) => {
+  return axios.get('api/message/getStudentEmail', {
+    params: {
+      student_id: student_id
+    }
+  })
+};
+
+exports.getParentEmail = (student_id) => {
+  return axios.get('api/message/getParentEmail', {
+    params: {
+      student_id: student_id
+    }
+  })
 };
 
 exports.sendEmail = () => {

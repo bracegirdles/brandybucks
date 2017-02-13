@@ -118,7 +118,7 @@ app.post('/message/sendEmail',function( req, res) {
     subject: req.body.subject,
     html: "<b style='color:green'>Message: "+req.body.message+"</b><br>Visit <a href=http://localhost:3000/login >Login page</a> for a detailed log entry</br>"
   }
-  
+
   return Promise.promisify((function(){
     mailgun.messages()
     .send(data, function(err, body) {
@@ -134,8 +134,6 @@ app.post('/message/sendEmail',function( req, res) {
 });
 // catch any other urls and send to index.html in /../client
 app.get('*', function(req, res) {
-
-  console.log('from wildcard route!! ', req.session)
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });
 

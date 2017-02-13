@@ -60,15 +60,8 @@ module.exports = {
       }
     },
   },
-/*
-knex('users').where(function() {
-  this.where('id', 1).orWhere('id', '>', 10)
-}).orWhere({name: 'Tester'})
-Outputs:
-select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
-*/
+
   studentInfo: {
-//
     post: function(req, res) {
       var first_name = req.body.first_name;
       var last_name = req.body.last_name;
@@ -124,6 +117,15 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
       })
     },
 
+    getName: function(req, res) {
+      knex('students')
+      .select('full_name')
+      .where('id', '=', req.query.id)
+      .then(function(data) {
+        res.send(data);
+      })
+    },
+
   },
 
 
@@ -168,7 +170,15 @@ select * from `users` where (`id` = 1 or `id` > 10) or (`name` = 'Tester')
   message: {
     getParentEmail: function(req, res) {
       var student_id = req.query.student_id;
-      knex.select('email').from('parents').where('student_id', '=', student_id)
+      knex.select('*').from('parents').where('student_id', '=', student_id)
+      .then(function(data) {
+        res.send(data);
+      })
+    },
+
+    getStudentEmail: function(req, res) {
+      const student_id = req.query.student_id;
+      knex.select('email').from('students').where('id', '=', 'student_id')
       .then(function(data) {
         res.send(data);
       })
