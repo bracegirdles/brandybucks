@@ -27,7 +27,11 @@ import StudentProfile from './StudentProfile/StudentProfile.jsx';
 // that returns components studentpage, parentpage, emergencypage
 import StudentPage from './StudentProfile/StudentPage.jsx'
 import ParentPage from './StudentProfile/ParentPage.jsx';
-import EmergencyPage from './StudentProfile/EmergencyPage.jsx'
+import EmergencyPage from './StudentProfile/EmergencyPage.jsx';
+
+// Stats Pages (contain input forms)
+import EmotionalStatePage from './StudentProfile/EmotionalStatePage.jsx';
+import EmotionalStateStatistics from './forms/EmotionalStateStatistics.jsx';
 
 
 export default (
@@ -48,11 +52,12 @@ export default (
       <IndexRoute component={StudentPage} />
       <Route path="parent" component={ParentPage} />
       <Route path="emergency" component={EmergencyPage} />
+      <Route path="emotionalstatepage" component={EmotionalStatePage} />
+      <Route path="emotionalstatestatistics" component={EmotionalStateStatistics} />
       {
         /*
 
         Move these routes up with the proper Pages, similar to above
-        <Route path="emotion" component={EmotionalState} />
         <Route path="attendence" component={Attendence} />
         <Route path="engagement" component={Engagement} />
         <Route path="interpersonal" component={Interpersonal} />
