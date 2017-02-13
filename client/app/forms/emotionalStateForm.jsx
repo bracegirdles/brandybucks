@@ -4,7 +4,9 @@ import {getAllStudents} from '../helper/auth.js'
 import {addLog} from '../helper/auth.js';
 import EmotionalStateRadioGroup from './EmotionalStateRadioGroup.jsx';
 import EmotionalStateRadio from './EmotionalStateRadio.jsx';
+import EmotionalStatePlot from './EmotionalStatePlot.jsx';
 import emotionalSpectrum from './emotionalSpectrumData.js';
+import {addEmotionalStateData, getAllEmotionalStateData} from '../helper/formHelpers.js';
 import css from '../../css/forms.css';
 
 class EmotionalStateForm extends React.Component {
@@ -36,6 +38,7 @@ class EmotionalStateForm extends React.Component {
   }
 
   handleFormSubmit(formSubmitEvent) {
+    console.log(this.props.student);
     formSubmitEvent.preventDefault();
     
     const emotionalState = {
@@ -44,18 +47,19 @@ class EmotionalStateForm extends React.Component {
       noon_mood_score: this.state.noonMood,
       end_mood_score: this.state.endMood,
       teacher_notes: this.state.teacherNotes,
-      student_id: this.props.student.student_id,
+      student_id: this.props.student.id,
       teacher_id: this.props.student.teacher_id
     }
     
     addEmotionalStateData(emotionalState);
     console.log('You have selected: ', this.state.morningMood, this.state.noonMood, this.state.endMood, ' and ', this.state.date);
+
   }
 
   render() {
     return (
       <div className="container">
-      <h1>How are you feeling?</h1>
+        <h1>How are you feeling?</h1>
         <div className="row">
           <div className="col-lg-12">
             <form onSubmit={this.handleFormSubmit}>
@@ -84,6 +88,7 @@ class EmotionalStateForm extends React.Component {
                                     emotionalSpectrum={emotionalSpectrum}
               />
               <button className="btn btn-default" type="submit">Save</button>
+
             </form>
           </div>
         </div>
