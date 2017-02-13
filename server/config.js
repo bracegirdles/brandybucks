@@ -76,6 +76,7 @@ bookshelf.knex.schema.hasTable('teachers').then(function(exists) {
             student.string('address', 200);
             student.string('phonenumber', 100);
             student.string('studentID', 100);
+            student.string('parent', 100);
             student.string('disability_1', 100);
             student.string('disability_2', 100);
             student.string('trigger_1', 100);
