@@ -17,6 +17,7 @@ import Dashboard from './Dashboard/Dashboard.jsx';
 import StudentList from './StudentList/StudentList.jsx';
 import Charts from './Statistics/Charts.jsx';
 import Schedule from './Schedule/Schedule.jsx';
+import Calendar from './Schedule/Calendar.jsx';
 import Settings from './Settings/Settings.jsx';
 
 // StudentProfile Components
@@ -40,9 +41,7 @@ export default (
     <IndexRoute component={Dashboard} />
     <Route path="students" component={StudentList} />
     <Route path="schedule" component={Schedule} />
-    { /*
-      <Route path="calendar" component={Calendar} />
-      */ }
+    <Route path="calendar" component={Calendar} />
     <Route path="settings" component={Settings} />
     <Route path="message" component={SendEmail} />
 
