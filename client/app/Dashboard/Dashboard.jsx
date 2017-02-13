@@ -8,7 +8,7 @@ class Dashboard extends React.Component {
 
     this.state = {
       panel: 'welcome',
-      preview: '/imgs/welcome.jpg'
+      preview: '../welcome.png'
     }
 
     this.handleHover = this.handleHover.bind(this);
@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
   handleHover(panel) {
     this.setState({
       panel: panel,
-      preview: `/imgs/${panel}.jpg`
+      preview: `../${panel}.png`
     });
   }
 
