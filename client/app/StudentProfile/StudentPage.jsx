@@ -11,12 +11,12 @@ const StudentPage = props => (
       <div className="col-md-8">
         <div className="row">
           <div className="col-md-6">
-            <Panel key={1} title="Engagement" inStudentPage={true} icon="assistive-listening-systems" />
-            <Panel key={2} title="Emotional State Page" inStudentPage={true} icon="heart-o" />
+            <Panel key={1} title="Engagement" inStudentPage={true} hover={()=>{}} icon="assistive-listening-systems" />
+            <Panel key={2} title="Emotional State" inStudentPage={true} hover={()=>{}} icon="heart-o" />
           </div>
           <div className="col-md-6">
-            <Panel key={3} title="Interpersonal Skills" inStudentPage={true} icon="commenting-o" />
-            <Panel key={4} title="Maturity" inStudentPage={true} icon="smile-o" />
+            <Panel key={3} title="Interpersonal" inStudentPage={true} hover={()=>{}} icon="commenting-o" />
+            <Panel key={4} title="Maturity" inStudentPage={true} hover={()=>{}} icon="smile-o" />
           </div>
         </div>
       </div>
