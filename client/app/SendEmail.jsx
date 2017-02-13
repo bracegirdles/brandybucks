@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {getAllStudents, getParent, getStudentName, getStudentEmail} from './helper/auth';
+import Checkbox from './Checkbox.jsx';
 
 class SendEmail extends React.Component {
   constructor(props) {
@@ -12,13 +13,16 @@ class SendEmail extends React.Component {
       email: '',
       subject: '',
       message: '',
-      student: 'Select Student'
+      student: 'Select Student',
+      isChecked: true
     };
     this.handleAuthor = this.handleAuthor.bind(this);
     this.handleStudent = this.handleStudent.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleSubject = this.handleSubject.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
+    this.handleParentEmail = this.handleParentEmail.bind(this);
+    this.toggleCheckbox = this.toggleCheckbox.bind(this);
     this.submitClick = this.submitClick.bind(this);
   }
 
@@ -103,13 +107,20 @@ class SendEmail extends React.Component {
   handleEmail(e) {
     if (this.state.email.length > 0) {
       this.setState({
-        email: this.state.email + ',' + e.target.value
+        email: this.state.email + ', ' + e.target.value
       })
     } else {
       this.setState({
         email: e.target.value,
       });
     }
+  }
+
+  handleParentEmail(e) {
+    const parentEmail = this.state.email.split(', ')[1];
+    this.setState({
+      email: this.state.email.split(', ')[0]
+    })
   }
 
   handleSubject(e) {
@@ -119,11 +130,22 @@ class SendEmail extends React.Component {
   }
 
   handleStudent(e) {
+    this.setState({
+      email: ''
+    })
     var id = e.target.value;
     getStudentName(id).then((resp) => {
       this.setState({
         student: resp.data[0].full_name
       })
+      getStudentEmail(id).then((resp) => {
+        const email = {target: {
+          value: resp.data[0].email
+        }};
+        this.handleEmail(email);
+      }).catch((err) => {
+        console.log(err);
+      });
       getParent(id).then((resp) => {
         const email = {target: {
           value: resp.data[0].email
@@ -136,6 +158,14 @@ class SendEmail extends React.Component {
 
 
 
+  }
+
+  toggleCheckbox(label) {
+    if (this.selectedCheckboxes.has(label)) {
+      this.selectedCheckboxes.delete(label);
+    } else {
+      this.selectedCheckboxes.add(label);
+    }
   }
 
   handleMessage(e) {
@@ -198,16 +228,17 @@ class SendEmail extends React.Component {
                       })
                       }
                     </select>
+                    <Checkbox label={"Include Parent Email"} handleCheckboxChange={this.toggleCheckbox} />
                   </div>
                   <div className="form-group">
-                    <label>
-                      Subject:
-                    </label>
-                    <input type="text" className="form-control" name="subject" value={this.state.subject} onChange={this.handleSubject} required/>
                     <label>
                       To:
                     </label>
                     <input type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleEmail} required/>
+                    <label>
+                      Subject:
+                    </label>
+                    <input type="text" className="form-control" name="subject" value={this.state.subject} onChange={this.handleSubject} required/>
                     <label>
                       Message
                     </label>
@@ -228,3 +259,9 @@ class SendEmail extends React.Component {
 }
 
 export default SendEmail;
+
+// <div className="form-group">
+//                       <input type="checkbox" value="parent-email" onChange={this.handleParentEmail}/>
+//                       <label>Include Parent Email
+//                       </label>
+//                     </div>

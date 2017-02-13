@@ -178,7 +178,7 @@ module.exports = {
 
     getStudentEmail: function(req, res) {
       const student_id = req.query.student_id;
-      knex.select('email').from('students').where('id', '=', 'student_id')
+      knex.select('email').from('students').where('id', '=', student_id)
       .then(function(data) {
         res.send(data);
       })

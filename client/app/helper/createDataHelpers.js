@@ -64,6 +64,12 @@ var createData = {
             IEP: req.IEP,
             pic: req.pic,
             teacher_id: req.teacher_id,
+            email: req.email,
+            studentID: req.studentID,
+            phonenumber: req.phonenumber,
+            aide: req.aide,
+            address: req.address,
+            parent: req.parent
           });
 
           newStudent.save()
