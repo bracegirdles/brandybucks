@@ -3575,13 +3575,13 @@ semver-diff@^2.0.0:
   dependencies:
     semver "^5.0.3"
 
-semver@^5.0.3, semver@~5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
-
-semver@~5.0.1:
+semver@^5.0.3, semver@~5.0.1:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.0.3.tgz#77466de589cd5d3c95f138aa78bc569a3cb5d27a"
+
+semver@~5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
 send@0.14.2, send@latest:
   version "0.14.2"
@@ -4104,7 +4104,7 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
-victory-chart@^16.1.0:
+victory-chart@^16.1.2:
   version "16.1.2"
   resolved "https://registry.yarnpkg.com/victory-chart/-/victory-chart-16.1.2.tgz#79fdfacaf77931a37a3bc68319fd2ec3eb50b37c"
   dependencies:
@@ -4112,7 +4112,7 @@ victory-chart@^16.1.0:
     lodash "^4.12.0"
     victory-core "^13.0.0"
 
-victory-core@^13.0.0, victory-core@^13.0.1:
+victory-core@^13.0.0, victory-core@^13.0.1, victory-core@^13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/victory-core/-/victory-core-13.0.2.tgz#e36f889a64cd8912a283c7d0a48c12ee6ac37d1e"
   dependencies:
@@ -4131,12 +4131,12 @@ victory-pie@^10.1.0:
     lodash "^4.12.0"
     victory-core "^13.0.1"
 
-victory@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/victory/-/victory-0.16.1.tgz#f3ff2ed1b1a9ca88215872a9b6e55cc6cbf383f9"
+victory@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/victory/-/victory-0.17.0.tgz#4f196cfe85504032b93bf0156786b436ccd46d6e"
   dependencies:
-    victory-chart "^16.1.0"
-    victory-core "^13.0.0"
+    victory-chart "^16.1.2"
+    victory-core "^13.0.2"
     victory-pie "^10.1.0"
 
 vm-browserify@0.0.4:
