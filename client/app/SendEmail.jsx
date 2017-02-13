@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {getAllStudents, getParentEmail, getStudentName, getStudentEmail} from './helper/auth';
+import {getAllStudents, getParent, getStudentName, getStudentEmail} from './helper/auth';
 
 class SendEmail extends React.Component {
   constructor(props) {
@@ -124,7 +124,7 @@ class SendEmail extends React.Component {
       this.setState({
         student: resp.data[0].full_name
       })
-      getParentEmail(id).then((resp) => {
+      getParent(id).then((resp) => {
         const email = {target: {
           value: resp.data[0].email
         }};

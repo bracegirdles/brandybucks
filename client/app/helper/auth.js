@@ -86,8 +86,8 @@ exports.getStudentEmail = (student_id) => {
   })
 };
 
-exports.getParentEmail = (student_id) => {
-  return axios.get('api/message/getParentEmail', {
+exports.getParent = (student_id) => {
+  return axios.get('api/message/getParent', {
     params: {
       student_id: student_id
     }

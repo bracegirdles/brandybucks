@@ -168,7 +168,7 @@ module.exports = {
   },
 
   message: {
-    getParentEmail: function(req, res) {
+    getParent: function(req, res) {
       var student_id = req.query.student_id;
       knex.select('*').from('parents').where('student_id', '=', student_id)
       .then(function(data) {

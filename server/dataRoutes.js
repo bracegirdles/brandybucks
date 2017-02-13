@@ -19,7 +19,7 @@ router.post('/logs', controller.logs.post);
 
 router.get('/logs/getAll', controller.logs.get);
 
-router.get('/message/getParentEmail', controller.message.getParentEmail);
+router.get('/message/getParent', controller.message.getParent);
 
 router.get('/message/getStudentEmail', controller.message.getStudentEmail);
 
