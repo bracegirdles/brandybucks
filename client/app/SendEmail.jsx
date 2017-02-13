@@ -14,14 +14,15 @@ class SendEmail extends React.Component {
       subject: '',
       message: '',
       student: 'Select Student',
-      isChecked: true
+      isChecked: true,
+      parentEmail: ''
     };
     this.handleAuthor = this.handleAuthor.bind(this);
     this.handleStudent = this.handleStudent.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleSubject = this.handleSubject.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
-    this.handleParentEmail = this.handleParentEmail.bind(this);
+    // this.handleParentEmail = this.handleParentEmail.bind(this);
     this.toggleCheckbox = this.toggleCheckbox.bind(this);
     this.submitClick = this.submitClick.bind(this);
   }
@@ -105,23 +106,23 @@ class SendEmail extends React.Component {
   }
 
   handleEmail(e) {
-    if (this.state.email.length > 0) {
-      this.setState({
-        email: this.state.email + ', ' + e.target.value
-      })
-    } else {
+    // if (this.state.email.length > 0) {
+    //   this.setState({
+    //     email: this.state.email + ', ' + e.target.value
+    //   })
+    // } else {
       this.setState({
         email: e.target.value,
       });
-    }
+    // }
   }
 
-  handleParentEmail(e) {
-    const parentEmail = this.state.email.split(', ')[1];
-    this.setState({
-      email: this.state.email.split(', ')[0]
-    })
-  }
+  // handleParentEmail(e) {
+  //   const parentEmail = this.state.email.split(', ')[1];
+  //   this.setState({
+  //     email: this.state.email.split(', ')[0]
+  //   })
+  // }
 
   handleSubject(e) {
     this.setState({
@@ -146,14 +147,19 @@ class SendEmail extends React.Component {
       }).catch((err) => {
         console.log(err);
       });
-      getParent(id).then((resp) => {
-        const email = {target: {
-          value: resp.data[0].email
-        }};
-        this.handleEmail(email);
-      }).catch((err) => {
-        console.log(err);
-      });
+        getParent(id).then((resp) => {
+          const email = {target: {
+            value: this.state.email + ', ' + resp.data[0].email
+          }};
+          this.setState({
+            parentEmail: resp.data[0].email
+          })
+          if (this.state.isChecked) {
+            this.handleEmail(email);
+          }
+            }).catch((err) => {
+              console.log(err);
+            });
     });
 
 
@@ -161,10 +167,22 @@ class SendEmail extends React.Component {
   }
 
   toggleCheckbox(label) {
-    if (this.selectedCheckboxes.has(label)) {
-      this.selectedCheckboxes.delete(label);
+    this.setState({
+      isChecked: !this.state.isChecked
+    });
+    // if (this.selectedCheckboxes.has(label)) {
+    //   this.selectedCheckboxes.delete(label);
+    // } else {
+    //   this.selectedCheckboxes.add(label);
+    // }
+    if (this.state.email.indexOf('@') !== this.state.email.lastIndexOf('@')) {
+      this.setState({
+        email: this.state.email.split(',')[0]
+      })
     } else {
-      this.selectedCheckboxes.add(label);
+      this.setState({
+        email: this.state.email + ', ' + this.state.parentEmail
+      })
     }
   }
 
@@ -228,7 +246,17 @@ class SendEmail extends React.Component {
                       })
                       }
                     </select>
-                    <Checkbox label={"Include Parent Email"} handleCheckboxChange={this.toggleCheckbox} />
+                    <div className="checkbox">
+                      <label>
+                        <input
+                          type="checkbox"
+                          value={"Include Parent Email"}
+                          checked={this.state.isChecked}
+                          onChange={this.toggleCheckbox}
+                        />
+                        Include Parent Email
+                      </label>
+                    </div>
                   </div>
                   <div className="form-group">
                     <label>

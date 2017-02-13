@@ -130,7 +130,7 @@ app.post('/message/sendEmail',function( req, res) {
         res.send('Your mail was not sent')
       } else {
 
-        res.render('/message');
+        res.end('/message');
       }
   })})
   )()
