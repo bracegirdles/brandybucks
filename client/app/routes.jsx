@@ -51,7 +51,7 @@ export default (
       <IndexRoute component={StudentPage} />
       <Route path="parent" component={ParentPage} />
       <Route path="emergency" component={EmergencyPage} />
-      <Route path="emotionalstatepage" component={EmotionalStatePage} />
+      <Route path="emotionalstate" component={EmotionalStatePage} />
       <Route path="emotionalstatestatistics" component={EmotionalStateStatistics} />
       {
         /*
