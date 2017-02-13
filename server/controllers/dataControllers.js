@@ -188,13 +188,15 @@ module.exports = {
 
   emotionalState: {
     getAll: function(req, res) {
-      knex.select('*')
-        .from('emotional_state_data')
-        .join('students', {'students.id': 'emotional_state_data.student_id'})
+      console.log(req.query);
+      var student_id = req.query.student_id;
+      knex('emotional_state_data')
+        .select('*')
+        .where('student_id', '=', student_id)
         .then(function(data){
           res.send(data);
         })
-      },
+    },
 
     // getOne: function(req, res) {
     //   knex.select('*')
@@ -205,228 +207,282 @@ module.exports = {
     //     })
     //   }
     // },
+  
+  //  ATTEMPTING TO IMPLEMENT AN UPSERT HERE - SO FAR HAVING MYSQL ERRORS
+  //  ------------------------------------------------------------------- 
+  //   post: function(req, res) {
+  //     var student_id = req.body.student_id;
+  //     var date = req.body.date;
 
+  //     var newEmotionalState = new EmotionalState({
+  //       date: req.body.date,
+  //       morning_mood_score: req.body.morning_mood_score,
+  //       noon_mood_score: req.body.noon_mood_score,
+  //       end_mood_score: req.body.end_mood_score,
+  //       teacher_notes: req.body.teacherNotes,
+  //       student_id: req.body.student_id,
+  //       teacher_id: req.body.teacher_id
+  //     });
+
+      // var record = knex('emotional_state_data').where({
+      //   student_id: student_id,
+      //   date: date
+      // });
+
+  //       // 'student_id', '=', student_id).select('*');
+
+  //     if (record) {
+  //       console.log('RECORD!: ', record);
+  //       record.update({
+  //         date: newEmotionalState.date,
+  //         morning_mood_score: newEmotionalState.morning_mood_score,
+  //         noon_mood_score: newEmotionalState.noon_mood_score,
+  //         end_mood_score: newEmotionalState.end_mood_score,
+  //         teacher_notes: newEmotionalState.teacherNotes,
+  //         student_id: newEmotionalState.student_id,
+  //         teacher_id: newEmotionalState.teacher_id
+  //       }).then(function() {
+  //         res.send('Emotional state update saved in database.');
+  //       })
+  //     } else {
+  //       newEmotionalState.save().then(function() {
+  //         res.send('New emotional state entry saved in database.');
+  //       });
+
+  //       knex('students').where('id', '=', student_id)
+  //       .increment('emotionalStateCount', 1)
+  //       .then(function() {
+  //         console.log('Emotional state data count updated.')
+  //       });
+  //     }
+  //   }
+  // }
     post: function(req, res) {
-      knex('students')
-      .where('id', '=', student_id)
+      var student_id = req.body.student_id;
+      var date = req.body.date;
+
+      var newEmotionalState = new EmotionalState({
+        date: req.body.date,
+        morning_mood_score: req.body.morning_mood_score,
+        noon_mood_score: req.body.noon_mood_score,
+        end_mood_score: req.body.end_mood_score,
+        teacher_notes: req.body.teacherNotes,
+        student_id: req.body.student_id,
+        teacher_id: req.body.teacher_id
+      });
+
+      newEmotionalState.save().then(function() {
+        console.log('New emotional state entry saved in database.')
+        res.send('New emotional state entry saved in database.');
+      });
+
+      knex('students').where('id', '=', student_id)
       .increment('emotionalStateCount', 1)
       .then(function() {
         console.log('Emotional state data count updated.')
       });
-
-      var newEmotionalState = new EmotionalState({
-        date: req.body.date,
-        morning_mood_score: req.body.morningMood,
-        noon_mood_score: req.body.noonMood,
-        end_mood_score: req.body.endMood,
-        teacher_notes: req.body.teacherNotes,
-        student_id: req.body.student_id,
-        teacher_id: req.body.teacher_id
-      })
-
-      newEmotionalState.save().then(function() {
-        res.send('Emotional state update saved in database.')
-      });
-    }
-  },
-
-  interestAndEngagement: {
-    getAll: function(req, res) {
-      knex.select('*')
-        .from('interest_and_engagement_data')
-        .join('students', {'students.id': 'interest_and_engagement.student_id'})
-        .then(function(data){
-          res.send(data);
-        })
-    },
-
-    // getOne: function(req, res) {
-    //   knex.select('*')
-    //     .from('interest_and_engagement_data')
-    //     .join('students', {'students.id': 'interest_and_engagement_data.student_id'})
-    //     .then(function(data){
-    //       res.send(data);
-    //     })
-    //   }
-    // },
-
-    post: function(req, res) {
-
-      knex('students')
-      .where('id', '=', student_id)
-      .increment('interestAndEngagementCount', 1)
-      .then(function() {
-        console.log('Interest and Engagement data count updated.')
-      });
-
-      var newInterestAndEngagement = new InterestAndEngagement({
-        date: req.body,
-        r_performance_score: req.body,
-        r_participation_score: req.body,
-        r_enjoyment_score: req.body,
-        r_interest_score: req.body,
-        r_repeatability_score: req.body,
-        w_reading_performance_score: req.body,
-        w_participation_score: req.body,
-        w_enjoyment_score: req.body,
-        w_interest_score: req.body,
-        w_repeatability_score: req.body,
-        m_reading_performance_score: req.body,
-        m_participation_score: req.body,
-        m_enjoyment_score: req.body,
-        m_interest_score: req.body,
-        m_repeatability_score: req.body,
-        teacher_notes: req.body,
-        student_id: req.body,
-        teacher_id: req.body,
-      })
-
-      newInterestAndEngagement.save().then(function() {
-        res.send('Interest and Engagement update saved in database.')
-      });
-    }
-  },
-
-  interpersonalSkills: {
-    getAll: function(req, res) {
-      knex.select('*')
-        .from('interpersonal_skills_data')
-        .join('students', {'students.id': 'interpersonal_skills_data.student_id'})
-        .then(function(data){
-          res.send(data);
-        })
-    },
-
-    // getOne: function(req, res) {
-    //   knex.select('*')
-    //     .from('interpersonal_skills_data')
-    //     .join('students', {'students.id': 'interpersonal_skills_data.student_id'})
-    //     .then(function(data){
-    //       res.send(data);
-    //     })
-    //   }
-    // },
-
-    post: function(req, res) {
-
-      knex('students')
-      .where('id', '=', student_id)
-      .increment('interpersonalSkillsCount', 1)
-      .then(function() {
-        console.log('Interpersonal Skills data count updated.')
-      });
-
-      var newInterpersonalSkills = new InterpersonalSkills({
-        date: req.body,
-        coop_listen_to_instruction_score: req.body,
-        one_on_one_cheering_up_others_score: req.body,
-        one_on_one_empowering_others_score: req.body,
-        one_on_one_helping_others_score: req.body,
-        one_on_one_sharing_score: req.body,
-        cd_behavior_score: req.body,
-        cd_morale_score: req.body,
-        coop_notes: req.body,
-        one_on_one_notes: req.body,
-        cd_notes: req.body,
-        student_id: req.body,
-        teacher_id: req.body,
-      })
-
-      newInterpersonalSkills.save().then(function() {
-        res.send('Interpersonal Skills update saved in database.')
-      });
-    }
-  },
-
-  attendance: {
-    getAll: function(req, res) {
-      knex.select('*')
-        .from('attendance_data')
-        .join('students', {'students.id': 'attendance_data.student_id'})
-        .then(function(data){
-          res.send(data);
-        })
-    },
-
-    // getOne: function(req, res) {
-    //   knex.select('*')
-    //     .from('attendance_data')
-    //     .join('students', {'students.id': 'attendance_data.student_id'})
-    //     .then(function(data){
-    //       res.send(data);
-    //     })
-    //   }
-    // },
-
-    post: function(req, res) {
-
-      knex('students')
-      .where('id', '=', student_id)
-      .increment('attendanceCount', 1)
-      .then(function() {
-        console.log('Attendance data count updated.')
-      });
-
-      var newAttendance = new Attendance({
-        date: req.body,
-        presence: req.body,
-        teacher_notes: req.body,
-        student_id: req.body,
-        teacher_id: req.body,
-      });
-
-      newAttendance.save().then(function() {
-        res.send('Attendance update saved in database.')
-      });
-    }
-  },
-
-  maturity: {
-    getAll: function(req, res) {
-      knex.select('*')
-        .from('maturity_data')
-        .join('students', {'students.id': 'maturity_data.student_id'})
-        .then(function(data){
-          res.send(data);
-        })
-    },
-
-    // getOne: function(req, res) {
-    //   knex.select('*')
-    //     .from('maturity_data')
-    //     .join('students', {'students.id': 'maturity_data.student_id'})
-    //     .then(function(data){
-    //       res.send(data);
-    //     })
-    //   }
-    // },
-
-    post: function(req, res) {
-
-      knex('students')
-      .where('id', '=', student_id)
-      .increment('maturityCount', 1)
-      .then(function() {
-        console.log('Maturity data count updated.')
-      });
-
-      var newMaturity = new Maturity({
-        date: req.body,
-        response_general_score: req.body,
-        response_adversity_score: req.body,
-        disability_induced_stress_general_score: req.body,
-        disability_induced_stress_trigger_score: req.body,
-        trigger_response_decision_score: req.body,
-        behavioral_output_score: req.body,
-        general_maturity_notes: req.body,
-        disability_management_notes: req.body,
-        student_id: req.body,
-        teacher_id: req.body,
-      })
-
-      newMaturity.save().then(function() {
-        res.send('Maturity update saved in database.')
-      });
     }
   }
+  // Use this to manually enter data into the table:
+  // INSERT INTO emotional_state_data (date, morning_mood_score, noon_mood_score, end_mood_score, teacher_notes, student_id, teacher_id, created_at, updated_at) VALUES ('2017-02-13', -4, -2, 0, null, 3, 3, '2017-02-12 13:14:17', '2017-02-12 13:14:17');
+
+//   interestAndEngagement: {
+//     getAll: function(req, res) {
+//       knex.select('*')
+//         .from('interest_and_engagement_data')
+//         .join('students', {'students.id': 'interest_and_engagement.student_id'})
+//         .then(function(data) {
+//           res.send(data);
+//         })    
+//     },
+
+//     // getOne: function(req, res) {
+//     //   knex.select('*')
+//     //     .from('interest_and_engagement_data')
+//     //     .join('students', {'students.id': 'interest_and_engagement_data.student_id'})
+//     //     .then(function(data){
+//     //       res.send(data);
+//     //     })
+//     //   }
+//     // },
+
+//     post: function(req, res) {
+
+//       knex('students')
+//       .where('id', '=', student_id)
+//       .increment('interestAndEngagementCount', 1)
+//       .then(function() {
+//         console.log('Interest and Engagement data count updated.')
+//       });
+
+//       var newInterestAndEngagement = new InterestAndEngagement({
+//         date: req.body.
+//         r_performance_score: req.body.
+//         r_participation_score: req.body.
+//         r_enjoyment_score: req.body.
+//         r_interest_score: req.body.
+//         r_repeatability_score: req.body.
+//         w_reading_performance_score: req.body.
+//         w_participation_score: req.body.
+//         w_enjoyment_score: req.body.
+//         w_interest_score: req.body.
+//         w_repeatability_score: req.body.
+//         m_reading_performance_score: req.body.
+//         m_participation_score: req.body.
+//         m_enjoyment_score: req.body.
+//         m_interest_score: req.body.
+//         m_repeatability_score: req.body.
+//         teacher_notes: req.body.
+//         student_id: req.body.
+//         teacher_id: req.body.
+//       })
+
+//       newInterestAndEngagement.save().then(function() {
+//         res.send('Interest and Engagement update saved in database.')
+//       });
+//     }
+//   },
+
+//   interpersonalSkills: {
+//     getAll: function(req, res) {
+//       knex.select('*')
+//         .from('interpersonal_skills_data')
+//         .join('students', {'students.id': 'interpersonal_skills_data.student_id'})
+//         .then(function(data){
+//           res.send(data);
+//         })
+//     },
+
+//     // getOne: function(req, res) {
+//     //   knex.select('*')
+//     //     .from('interpersonal_skills_data')
+//     //     .join('students', {'students.id': 'interpersonal_skills_data.student_id'})
+//     //     .then(function(data){
+//     //       res.send(data);
+//     //     })
+//     //   }
+//     // },
+
+//     post: function(req, res) {
+
+//       knex('students')
+//       .where('id', '=', student_id)
+//       .increment('interpersonalSkillsCount', 1)
+//       .then(function() {
+//         console.log('Interpersonal Skills data count updated.')
+//       });
+
+//       var newInterpersonalSkills = new InterpersonalSkills({
+//         date: req.body.
+//         coop_listen_to_instruction_score: req.body.
+//         one_on_one_cheering_up_others_score: req.body.
+//         one_on_one_empowering_others_score: req.body.
+//         one_on_one_helping_others_score: req.body.
+//         one_on_one_sharing_score: req.body.
+//         cd_behavior_score: req.body.
+//         cd_morale_score: req.body.
+//         coop_notes: req.body.
+//         one_on_one_notes: req.body.
+//         cd_notes: req.body.
+//         student_id: req.body.
+//         teacher_id: req.body.
+//       })
+
+//       newInterpersonalSkills.save().then(function() {
+//         res.send('Interpersonal Skills update saved in database.')
+//       });
+//     }
+//   },
+
+//   attendance: {
+//     getAll: function(req, res) {
+//       knex.select('*')
+//         .from('attendance_data')
+//         .join('students', {'students.id': 'attendance_data.student_id'})
+//         .then(function(data){
+//           res.send(data);
+//         })
+//     },
+
+//     // getOne: function(req, res) {
+//     //   knex.select('*')
+//     //     .from('attendance_data')
+//     //     .join('students', {'students.id': 'attendance_data.student_id'})
+//     //     .then(function(data){
+//     //       res.send(data);
+//     //     })
+//     //   }
+//     // },
+
+//     post: function(req, res) {
+      
+//       knex('students')
+//       .where('id', '=', student_id)
+//       .increment('attendanceCount', 1)
+//       .then(function() {
+//         console.log('Attendance data count updated.')
+//       });
+
+//       var newAttendance = new Attendance({
+//         date: req.body.
+//         presence: req.body.
+//         teacher_notes: req.body.
+//         student_id: req.body.
+//         teacher_id: req.body.
+//       })
+
+//       newAttendance.save().then(function() {
+//         res.send('Attendance update saved in database.')
+//       });      
+//     }
+//   },
+
+//   maturity: {
+//     getAll: function(req, res) {
+//       knex.select('*')
+//         .from('maturity_data')
+//         .join('students', {'students.id': 'maturity_data.student_id'})
+//         .then(function(data){
+//           res.send(data);
+//         })
+//     },
+
+//     // getOne: function(req, res) {
+//     //   knex.select('*')
+//     //     .from('maturity_data')
+//     //     .join('students', {'students.id': 'maturity_data.student_id'})
+//     //     .then(function(data){
+//     //       res.send(data);
+//     //     })
+//     //   }
+//     // },
+
+//     post: function(req, res) {
+      
+//       knex('students')
+//       .where('id', '=', student_id)
+//       .increment('maturityCount', 1)
+//       .then(function() {
+//         console.log('Maturity data count updated.')
+//       });
+
+//       var newMaturity = new Maturity({
+//         date: req.body.
+//         response_general_score: req.body.
+//         response_adversity_score: req.body.
+//         disability_induced_stress_general_score: req.body.
+//         disability_induced_stress_trigger_score: req.body.
+//         trigger_response_decision_score: req.body.
+//         behavioral_output_score: req.body.
+//         general_maturity_notes: req.body.
+//         disability_management_notes: req.body.
+//         student_id: req.body.
+//         teacher_id: req.body.
+//       })
+      
+//       newMaturity.save().then(function() {
+//         res.send('Maturity update saved in database.')
+//       });      
+//     }
+//   }
 };
