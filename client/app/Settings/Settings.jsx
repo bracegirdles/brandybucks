@@ -65,10 +65,6 @@ class Settings extends React.Component {
         {
           name: 'Message',
           endpoint: '/message'
-        },
-        {
-          name: 'Message',
-          endpoint: '/message'
         }
       ]
     }
@@ -79,7 +75,7 @@ class Settings extends React.Component {
       <div>
         <div>
           <i className="fa fa-wrench fa-5x set-center"></i>
-          <h1>Currently under construction!</h1>
+          <h1 className="header-center">Currently under construction!</h1>
         </div>
         <div className="btn-center">
           <Link to="/"><button className="btn btn-primary" type="text">Back to Dashboard</button></Link>
