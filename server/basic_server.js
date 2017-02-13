@@ -10,6 +10,8 @@ var bookshelf = require('./config.js');
 var bodyParser = require('body-parser');
 var authRouter = require('./authRoutes.js');
 var dataRouter = require('./dataRoutes.js');
+var formDataRouter = require('./formDataRoutes.js');
+
 var controller = require('./controllers/dataControllers');
 
 var authRedirectMiddleware = function(req, res, next){
@@ -100,6 +102,8 @@ app.use(express.static(__dirname + '/../client'));
 
 // Set up our data api routes
 app.use('/api', dataRouter);
+app.use('/student/api/', formDataRouter);
+
 
 app.get('/api/user/status', function(req, res) {
   res.json(req.session)
