@@ -40,7 +40,7 @@ class StudentProfile extends React.Component {
         },
         {
           name: 'Emotional State',
-          endpoint: '/student/emotion'
+          endpoint: '/student/emotionalstate'
         },
         {
           name: 'Interpersonal Skills',
