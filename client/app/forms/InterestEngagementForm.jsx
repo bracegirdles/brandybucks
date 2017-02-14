@@ -4,7 +4,7 @@ import {getAllStudents} from '../helper/auth.js'
 import {addLog} from '../helper/auth.js';
 import InterestEngagementRadioGroup from './InterestEngagementRadioGroup.jsx';
 import InterestEngagementRadio from './InterestEngagementRadio.jsx';
-// import emotionalSpectrum from './emotionalSpectrumData.js';
+import {addInterestEngagementData, getAllInterestEngagementData} from '../helper/formHelpers.js';
 import css from '../../css/forms.css';
 
 class InterestEngagementForm extends React.Component {
@@ -68,7 +68,7 @@ class InterestEngagementForm extends React.Component {
       m_interest_score: this.state.m_interest_score,
       m_repeatability_score: this.state.m_repeatability_score,
       teacherNotes: this.state.teacherNotes,
-      student_id: this.props.student.student_id,
+      student_id: this.props.student.id,
       teacher_id: this.props.student.teacher_id
     }
     
@@ -79,7 +79,7 @@ class InterestEngagementForm extends React.Component {
   render() {
     return (
       <div className="container">
-      <h1>How are you feeling?</h1>
+      <h1>Interest and Engagement</h1>
         <div className="row">
           <div className="col-lg-12">
             <form onSubmit={this.handleFormSubmit}>
@@ -89,24 +89,88 @@ class InterestEngagementForm extends React.Component {
                   <input type="date" name="date" onChange={this.handleDateChange} />
                 </label>
               </div>
-              <h3>This morning, I'm feeling:</h3>  
-              <EmotionalStateRadioGroup name="morningMood"
-                                    value={this.state.morningMood}
-                                    handleOptionChange={this.handleOptionChange} 
-                                    emotionalSpectrum={emotionalSpectrum}
+              <h2>Reading:</h2>
+
+              <h3>Performance</h3>  
+              <InterestEngagementRadioGroup name="r_performance_score"
+                                    value={this.state.r_performance_score}
+                                    handleOptionChange={this.handleOptionChange}
               />
-              <h3>At lunch time today, I'm feeling:</h3>
-              <EmotionalStateRadioGroup name="noonMood"
-                                    value={this.state.noonMood}
-                                    handleOptionChange={this.handleOptionChange} 
-                                    emotionalSpectrum={emotionalSpectrum}
+              <h3>Willingess to Participate</h3>
+              <InterestEngagementRadioGroup name="r_participation_score"
+                                    value={this.state.r_participation_score}
+                                    handleOptionChange={this.handleOptionChange}
               />
-              <h3>After school today, I'm feeling:</h3>
-              <EmotionalStateRadioGroup name="endMood"
-                                    value={this.state.endMood}
-                                    handleOptionChange={this.handleOptionChange} 
-                                    emotionalSpectrum={emotionalSpectrum}
+              <h3>"Was the task fun today?"</h3>
+              <InterestEngagementRadioGroup name="r_enjoyment_score"
+                                    value={this.state.r_enjoyment_score}
+                                    handleOptionChange={this.handleOptionChange}
               />
+              <h3>"Was the task interesting today?"</h3>
+              <InterestEngagementRadioGroup name="r_interest_score"
+                                    value={this.state.r_interest_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>"Would you want to do it again tomorrow?"</h3>
+              <InterestEngagementRadioGroup name="r_repeatability_score"
+                                    value={this.state.r_repeatability_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h2>Writing</h2>
+
+              <h3>Performance</h3>
+              <InterestEngagementRadioGroup name="w_reading_performance_score"
+                                    value={this.state.w_reading_performance_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>Willingess to Participate</h3>
+              <InterestEngagementRadioGroup name="w_participation_score"
+                                    value={this.state.w_participation_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>"Was the task fun today?"</h3>
+              <InterestEngagementRadioGroup name="w_enjoyment_score"
+                                    value={this.state.w_enjoyment_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>"Was the task interesting today?"</h3>
+              <InterestEngagementRadioGroup name="w_interest_score"
+                                    value={this.state.w_interest_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>"Would you want to do it again tomorrow?"</h3>
+              <InterestEngagementRadioGroup name="w_repeatability_score"
+                                    value={this.state.w_repeatability_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h2>Math</h2>
+
+              <h3>Performance</h3>
+              <InterestEngagementRadioGroup name="m_reading_performance_score"
+                                    value={this.state.m_reading_performance_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>Willingess to Participate</h3>
+              <InterestEngagementRadioGroup name="m_participation_score"
+                                    value={this.state.m_participation_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>"Was the task fun today?"</h3>
+              <InterestEngagementRadioGroup name="m_enjoyment_score"
+                                    value={this.state.m_enjoyment_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>"Was the task interesting today?"</h3>
+              <InterestEngagementRadioGroup name="m_interest_score"
+                                    value={this.state.m_interest_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+              <h3>"Would you want to do it again tomorrow?"</h3>
+              <InterestEngagementRadioGroup name="m_repeatability_score"
+                                    value={this.state.m_repeatability_score}
+                                    handleOptionChange={this.handleOptionChange}
+              />
+
               <button className="btn btn-default" type="submit">Save</button>
             </form>
           </div>
