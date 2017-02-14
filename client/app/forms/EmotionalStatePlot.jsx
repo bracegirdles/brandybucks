@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, 
-         VictoryStack } from 'victory';
+         VictoryStack, VictoryGroup } from 'victory';
 import { VictoryContainer, VictoryArea, VictoryLine } from 'victory';
 import { getAllEmotionalStateData } from '../helper/formHelpers.js';
+import eS from './emotionalSpectrumData.js';
 
 
 // ----------------------------------------------------------------------------
@@ -22,13 +23,24 @@ class EmotionalStatePlot extends React.Component {
     getAllEmotionalStateData(this.props.id).then((data) => {
       console.log('data: ', data);
 
+      let y = data.data.map((dataPoint) => {
+        return (+(new Date(dataPoint.date)))/(1000*60*60*24); 
+      });
+
+      console.log(y);
+      
       this.setState({
         data: data.data.map((dataPoint) => {
-          return {time: dataPoint.date,
-                  score: dataPoint.morning_mood_score
+          console.log('hiiiii: ', dataPoint.noon_mood_score);
+          return {time: (((+(new Date(dataPoint.date)))/(1000*60*60*24)) - y[0]),
+                  morning_mood_score: dataPoint.morning_mood_score,
+                  noon_mood_score: dataPoint.noon_mood_score,
+                  end_mood_score: dataPoint.end_mood_score
                  };
         })
-      })
+      });
+
+      console.log('new data: ', this.state.data);
     })
   }
 
@@ -52,22 +64,51 @@ class EmotionalStatePlot extends React.Component {
             domainPadding={20}
           >
             <VictoryAxis
-              tickValues={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+              tickFormat={(x) => (`${x}`)}
+              tickCount={this.state.data.length}
+              label="Time (Days)"
             />
             <VictoryAxis
               dependentAxis={true}
-              tickFormat={(x) => (`$${x / 1000}k`)}
+              crossAxis={false}
+              tickValues={[String.fromCharCode(eS[8].hexCode.surr1, eS[8].hexCode.surr2),
+                           String.fromCharCode(eS[7].hexCode.surr1, eS[7].hexCode.surr2),
+                           String.fromCharCode(eS[6].hexCode.surr1, eS[6].hexCode.surr2),
+                           String.fromCharCode(eS[5].hexCode.surr1, eS[5].hexCode.surr2),
+                           String.fromCharCode(eS[4].hexCode.surr1, eS[4].hexCode.surr2),
+                           String.fromCharCode(eS[3].hexCode.surr1, eS[3].hexCode.surr2),
+                           String.fromCharCode(eS[2].hexCode.surr1, eS[2].hexCode.surr2),
+                           String.fromCharCode(eS[1].hexCode.surr1, eS[1].hexCode.surr2),
+                           String.fromCharCode(eS[0].hexCode.surr1, eS[0].hexCode.surr2),
+                          ]}
+              tickCount={9}
+              label="Happiness"
             />
-            <VictoryStack
+            <VictoryGroup
               colorScale={"warm"}
             >
               <VictoryLine
                 data={this.state.data}
                 x="time"
-                y="score"
+                y="morning_mood_score"
+                animate={{duration: 2000, delay: 250}}
+              />
+
+              <VictoryLine
+                data={this.state.data}
+                x="time"
+                y="noon_mood_score"
+                animate={{duration: 2000, delay: 250}}
               />
               
-            </VictoryStack>
+              <VictoryLine
+                data={this.state.data}
+                x="time"
+                y="end_mood_score"
+                animate={{duration: 2000, delay: 250}}
+              />              
+              
+            </VictoryGroup>
           </VictoryChart>
         </VictoryContainer>  
       </div>
@@ -78,7 +119,7 @@ class EmotionalStatePlot extends React.Component {
 export default EmotionalStatePlot;
 
 //scale="time" for victory axis
-
+// tickFormat={(y) => (`${String.fromCharCode(eS.filter((e) => e.score === y)[0].hexCode.surr1, eS.filter((e) => e.score === y)[0].hexCode.surr2)}`)}
 // // ----------------------------------------------------------------------------
 // // Stacked Bar Chart
 // // ----------------------------------------------------------------------------
