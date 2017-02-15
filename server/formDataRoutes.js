@@ -7,9 +7,11 @@ router.get('/emotionalStateDataGetAll', controller.emotionalState.getAll);
 
 router.post('/emotionalStateData', controller.emotionalState.post);
 
+router.get('/interestEngagementDataGetAll', controller.interestAndEngagement.getAll);
+
 // router.get('/interestEngagementData', controller.interestEngagement.get);
 
-// router.post('/interestEngagementData', controller.interestEngagement.post);
+router.post('/interestEngagementData', controller.interestAndEngagement.post);
 
 // router.get('/interpersonalSkillsData', controller.interpersonalSkills.get);
 
