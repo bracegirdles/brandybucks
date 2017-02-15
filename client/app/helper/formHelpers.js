@@ -8,8 +8,8 @@ exports.getAllEmotionalStateData = (studentId) => {
   }); 
 };
 
-exports.getIntersestEngagementData = (interestEngagementEntry) => {
-  return axios.get('api/interestEngagementData');
+exports.getAllIntersestEngagementData = (interestEngagementEntry) => {
+  return axios.get('api/interestEngagementDataGetAll');
 };
 
 exports.getInterpersonalSkillsData = (interpersonalSkillsEntry) => {
@@ -32,7 +32,7 @@ exports.addEmotionalStateData = (emotionalStateEntry) => {
   });
 };
 
-exports.addIntersestEngagementData = (interestEngagementEntry) => {
+exports.addInterestEngagementData = (interestEngagementEntry) => {
   return axios({
     method: 'POST',
     url: 'api/interestEngagementData',
