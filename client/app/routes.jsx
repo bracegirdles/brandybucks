@@ -33,6 +33,8 @@ import EmergencyPage from './StudentProfile/EmergencyPage.jsx';
 // Stats Pages (contain input forms)
 import EmotionalStatePage from './StudentProfile/EmotionalStatePage.jsx';
 import EmotionalStateStatistics from './forms/EmotionalStateStatistics.jsx';
+import InterestEngagementPage from './StudentProfile/InterestEngagementPage.jsx';
+import InterestEngagementStatistics from './forms/InterestEngagementStatistics.jsx';
 
 
 export default (
@@ -53,6 +55,8 @@ export default (
       <Route path="emergency" component={EmergencyPage} />
       <Route path="emotionalstate" component={EmotionalStatePage} />
       <Route path="emotionalstatestatistics" component={EmotionalStateStatistics} />
+      <Route path="engagement" component={InterestEngagementPage} />
+      <Route path="engagementstatistics" component={InterestEngagementStatistics} />
       {
         /*
 
