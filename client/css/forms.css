@@ -10,20 +10,26 @@ h1 {
 .date {
   float: right;
   display: block;
+  margin-bottom:100px;
 }
 
 .date input {
   margin-left: 10px;
 }
 
+.radio-group {
+  margin: 50px;
+}
+
 .radio {
   display: inline-block;
   margin-right: 3%;
+  /*border: 1px solid black;*/
   /*font-size: 50px;*/
 }
 
 .radio input {
-  /*visibility: hidden;*/
+  /*visibility: collapse;*/
 }
 
 .radio input:checked {
