@@ -14,9 +14,9 @@ class EmotionalStateForm extends React.Component {
     super(props);
     this.state = {
       date: null,
-      morningMood: 4,
-      noonMood: 4,
-      endMood: 4,
+      morningMood: 8,
+      noonMood: 8,
+      endMood: 8,
       teacherNotes: null
     };
 
@@ -69,19 +69,19 @@ class EmotionalStateForm extends React.Component {
                   <input type="date" name="date" onChange={this.handleDateChange} />
                 </label>
               </div>
-              <h3>This morning, I'm feeling:</h3>  
+              <h3>This morning, I feel:</h3>
               <EmotionalStateRadioGroup name="morningMood"
                                     value={this.state.morningMood}
                                     handleOptionChange={this.handleOptionChange} 
                                     emotionalSpectrum={emotionalSpectrum}
               />
-              <h3>At lunch time today, I'm feeling:</h3>
+              <h3>After lunch today, I feel:</h3>
               <EmotionalStateRadioGroup name="noonMood"
                                     value={this.state.noonMood}
                                     handleOptionChange={this.handleOptionChange} 
                                     emotionalSpectrum={emotionalSpectrum}
               />
-              <h3>After school today, I'm feeling:</h3>
+              <h3>After school today, I feel:</h3>
               <EmotionalStateRadioGroup name="endMood"
                                     value={this.state.endMood}
                                     handleOptionChange={this.handleOptionChange} 
